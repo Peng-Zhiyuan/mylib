@@ -1,0 +1,34 @@
+﻿JsonDic<JDcarnivalTask> _m_carnivalTask_dic;
+public void carnivalTask_Pre()
+{
+	if(_m_carnivalTask_dic==null)
+	{
+		if(m_carnivalTask_dic.Count>0)return;
+	}
+}
+
+public List<JDcarnivalTask> m_carnivalTask_list
+{
+	get
+	{
+		return m_carnivalTask_dic.DataList;
+	}
+}
+
+public JsonDic<JDcarnivalTask> m_carnivalTask_dic
+{
+	get
+	{
+		if(_m_carnivalTask_dic==null)
+		{
+			string _data=LoadFile("carnivalTask",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_carnivalTask_dic=new JsonDic<JDcarnivalTask>(_data);
+		}
+		return _m_carnivalTask_dic;
+	}
+}
+

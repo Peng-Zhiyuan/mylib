@@ -1,0 +1,29 @@
+1.需要修改脚本权限
+chmod +x build_xcode.sh
+chmod +x build_no_store.sh
+
+checklist
+1.LCM libs库只保留 armeabi   armeabi-v7a  x86
+2.LCM 移除tapjoy库，去除bugtas引用
+3.lcm bugtags store 库要先导入eclipse设置好引用关系，确保store是第一个便于去除store脚本执行（默认移除第一个引用）
+4.优化iOS大码大小，cn可以删除facebook相关库 adbrix广告插件
+5.ios可以移除百度推送
+6. facebook的build.xml添加 （ant目录下面有个build的模版，会merge每个工程自己的build文件）
+    <!-- compilation options -->
+    <property name="java.encoding" value="UTF-8" />
+    <property name="java.target" value="1.5" />
+    <property name="java.source" value="1.5" />
+    <property name="java.compilerargs" value="" />
+    <property name="java.compiler.classpath" value="" />
+
+繁体sdk
+1.googleplay升级jdk到1.7
+2.facebook sdk GraphRequestBatch类添加方法
+public Spliterator<GraphRequest> spliterator() 
+{
+  return null;
+}
+3.lsdklib添加所有库的引用确保store是第一个便于去除store脚本执行（默认移除第一个引用）
+
+
+上传打包教程 https://docs.mobage.com/pages/viewpage.action?pageId=18581078

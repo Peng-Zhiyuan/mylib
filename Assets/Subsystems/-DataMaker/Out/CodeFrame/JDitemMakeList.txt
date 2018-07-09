@@ -1,0 +1,34 @@
+﻿JsonDic<JDitemMakeList> _m_itemMakeList_dic;
+public void itemMakeList_Pre()
+{
+	if(_m_itemMakeList_dic==null)
+	{
+		if(m_itemMakeList_dic.Count>0)return;
+	}
+}
+
+public List<JDitemMakeList> m_itemMakeList_list
+{
+	get
+	{
+		return m_itemMakeList_dic.DataList;
+	}
+}
+
+public JsonDic<JDitemMakeList> m_itemMakeList_dic
+{
+	get
+	{
+		if(_m_itemMakeList_dic==null)
+		{
+			string _data=LoadFile("itemMakeList",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_itemMakeList_dic=new JsonDic<JDitemMakeList>(_data);
+		}
+		return _m_itemMakeList_dic;
+	}
+}
+

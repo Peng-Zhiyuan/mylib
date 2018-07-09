@@ -1,0 +1,34 @@
+﻿JsonDic<JDiptables> _m_iptables_dic;
+public void iptables_Pre()
+{
+	if(_m_iptables_dic==null)
+	{
+		if(m_iptables_dic.Count>0)return;
+	}
+}
+
+public List<JDiptables> m_iptables_list
+{
+	get
+	{
+		return m_iptables_dic.DataList;
+	}
+}
+
+public JsonDic<JDiptables> m_iptables_dic
+{
+	get
+	{
+		if(_m_iptables_dic==null)
+		{
+			string _data=LoadFile("iptables",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_iptables_dic=new JsonDic<JDiptables>(_data);
+		}
+		return _m_iptables_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDRaytheonTest> _m_RaytheonTest_dic;
+public void RaytheonTest_Pre()
+{
+	if(_m_RaytheonTest_dic==null)
+	{
+		if(m_RaytheonTest_dic.Count>0)return;
+	}
+}
+
+public List<JDRaytheonTest> m_RaytheonTest_list
+{
+	get
+	{
+		return m_RaytheonTest_dic.DataList;
+	}
+}
+
+public JsonDic<JDRaytheonTest> m_RaytheonTest_dic
+{
+	get
+	{
+		if(_m_RaytheonTest_dic==null)
+		{
+			string _data=LoadFile("RaytheonTest",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_RaytheonTest_dic=new JsonDic<JDRaytheonTest>(_data);
+		}
+		return _m_RaytheonTest_dic;
+	}
+}
+

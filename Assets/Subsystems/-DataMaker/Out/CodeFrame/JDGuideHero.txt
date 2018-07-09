@@ -1,0 +1,34 @@
+﻿JsonDic<JDGuideHero> _m_GuideHero_dic;
+public void GuideHero_Pre()
+{
+	if(_m_GuideHero_dic==null)
+	{
+		if(m_GuideHero_dic.Count>0)return;
+	}
+}
+
+public List<JDGuideHero> m_GuideHero_list
+{
+	get
+	{
+		return m_GuideHero_dic.DataList;
+	}
+}
+
+public JsonDic<JDGuideHero> m_GuideHero_dic
+{
+	get
+	{
+		if(_m_GuideHero_dic==null)
+		{
+			string _data=LoadFile("GuideHero",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_GuideHero_dic=new JsonDic<JDGuideHero>(_data);
+		}
+		return _m_GuideHero_dic;
+	}
+}
+

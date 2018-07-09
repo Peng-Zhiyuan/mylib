@@ -1,0 +1,34 @@
+﻿JsonDic<JDequipGbCost> _m_equipGbCost_dic;
+public void equipGbCost_Pre()
+{
+	if(_m_equipGbCost_dic==null)
+	{
+		if(m_equipGbCost_dic.Count>0)return;
+	}
+}
+
+public List<JDequipGbCost> m_equipGbCost_list
+{
+	get
+	{
+		return m_equipGbCost_dic.DataList;
+	}
+}
+
+public JsonDic<JDequipGbCost> m_equipGbCost_dic
+{
+	get
+	{
+		if(_m_equipGbCost_dic==null)
+		{
+			string _data=LoadFile("equipGbCost",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_equipGbCost_dic=new JsonDic<JDequipGbCost>(_data);
+		}
+		return _m_equipGbCost_dic;
+	}
+}
+

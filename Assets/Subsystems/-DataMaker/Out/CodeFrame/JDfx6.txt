@@ -1,0 +1,34 @@
+﻿JsonDic<JDfx6> _m_fx6_dic;
+public void fx6_Pre()
+{
+	if(_m_fx6_dic==null)
+	{
+		if(m_fx6_dic.Count>0)return;
+	}
+}
+
+public List<JDfx6> m_fx6_list
+{
+	get
+	{
+		return m_fx6_dic.DataList;
+	}
+}
+
+public JsonDic<JDfx6> m_fx6_dic
+{
+	get
+	{
+		if(_m_fx6_dic==null)
+		{
+			string _data=LoadFile("fx6",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_fx6_dic=new JsonDic<JDfx6>(_data);
+		}
+		return _m_fx6_dic;
+	}
+}
+

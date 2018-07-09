@@ -1,0 +1,34 @@
+﻿JsonDic<JDAwardTitle> _m_AwardTitle_dic;
+public void AwardTitle_Pre()
+{
+	if(_m_AwardTitle_dic==null)
+	{
+		if(m_AwardTitle_dic.Count>0)return;
+	}
+}
+
+public List<JDAwardTitle> m_AwardTitle_list
+{
+	get
+	{
+		return m_AwardTitle_dic.DataList;
+	}
+}
+
+public JsonDic<JDAwardTitle> m_AwardTitle_dic
+{
+	get
+	{
+		if(_m_AwardTitle_dic==null)
+		{
+			string _data=LoadFile("AwardTitle",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_AwardTitle_dic=new JsonDic<JDAwardTitle>(_data);
+		}
+		return _m_AwardTitle_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDNTitle> _m_NTitle_dic;
+public void NTitle_Pre()
+{
+	if(_m_NTitle_dic==null)
+	{
+		if(m_NTitle_dic.Count>0)return;
+	}
+}
+
+public List<JDNTitle> m_NTitle_list
+{
+	get
+	{
+		return m_NTitle_dic.DataList;
+	}
+}
+
+public JsonDic<JDNTitle> m_NTitle_dic
+{
+	get
+	{
+		if(_m_NTitle_dic==null)
+		{
+			string _data=LoadFile("NTitle",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NTitle_dic=new JsonDic<JDNTitle>(_data);
+		}
+		return _m_NTitle_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDbattleBase> _m_battleBase_dic;
+public void battleBase_Pre()
+{
+	if(_m_battleBase_dic==null)
+	{
+		if(m_battleBase_dic.Count>0)return;
+	}
+}
+
+public List<JDbattleBase> m_battleBase_list
+{
+	get
+	{
+		return m_battleBase_dic.DataList;
+	}
+}
+
+public JsonDic<JDbattleBase> m_battleBase_dic
+{
+	get
+	{
+		if(_m_battleBase_dic==null)
+		{
+			string _data=LoadFile("battleBase",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_battleBase_dic=new JsonDic<JDbattleBase>(_data);
+		}
+		return _m_battleBase_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDactive_payDayAward_items> _m_active_payDayAward_items_dic;
+public void active_payDayAward_items_Pre()
+{
+	if(_m_active_payDayAward_items_dic==null)
+	{
+		if(m_active_payDayAward_items_dic.Count>0)return;
+	}
+}
+
+public List<JDactive_payDayAward_items> m_active_payDayAward_items_list
+{
+	get
+	{
+		return m_active_payDayAward_items_dic.DataList;
+	}
+}
+
+public JsonDic<JDactive_payDayAward_items> m_active_payDayAward_items_dic
+{
+	get
+	{
+		if(_m_active_payDayAward_items_dic==null)
+		{
+			string _data=LoadFile("active_payDayAward_items",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_active_payDayAward_items_dic=new JsonDic<JDactive_payDayAward_items>(_data);
+		}
+		return _m_active_payDayAward_items_dic;
+	}
+}
+

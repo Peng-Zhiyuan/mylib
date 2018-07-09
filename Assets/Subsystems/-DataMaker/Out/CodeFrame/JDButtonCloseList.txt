@@ -1,0 +1,34 @@
+﻿JsonDic<JDButtonCloseList> _m_ButtonCloseList_dic;
+public void ButtonCloseList_Pre()
+{
+	if(_m_ButtonCloseList_dic==null)
+	{
+		if(m_ButtonCloseList_dic.Count>0)return;
+	}
+}
+
+public List<JDButtonCloseList> m_ButtonCloseList_list
+{
+	get
+	{
+		return m_ButtonCloseList_dic.DataList;
+	}
+}
+
+public JsonDic<JDButtonCloseList> m_ButtonCloseList_dic
+{
+	get
+	{
+		if(_m_ButtonCloseList_dic==null)
+		{
+			string _data=LoadFile("ButtonCloseList",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_ButtonCloseList_dic=new JsonDic<JDButtonCloseList>(_data);
+		}
+		return _m_ButtonCloseList_dic;
+	}
+}
+

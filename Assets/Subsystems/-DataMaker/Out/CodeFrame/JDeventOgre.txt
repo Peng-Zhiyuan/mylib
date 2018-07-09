@@ -1,0 +1,34 @@
+﻿JsonDic<JDeventOgre> _m_eventOgre_dic;
+public void eventOgre_Pre()
+{
+	if(_m_eventOgre_dic==null)
+	{
+		if(m_eventOgre_dic.Count>0)return;
+	}
+}
+
+public List<JDeventOgre> m_eventOgre_list
+{
+	get
+	{
+		return m_eventOgre_dic.DataList;
+	}
+}
+
+public JsonDic<JDeventOgre> m_eventOgre_dic
+{
+	get
+	{
+		if(_m_eventOgre_dic==null)
+		{
+			string _data=LoadFile("eventOgre",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_eventOgre_dic=new JsonDic<JDeventOgre>(_data);
+		}
+		return _m_eventOgre_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDjuedouLevel> _m_juedouLevel_dic;
+public void juedouLevel_Pre()
+{
+	if(_m_juedouLevel_dic==null)
+	{
+		if(m_juedouLevel_dic.Count>0)return;
+	}
+}
+
+public List<JDjuedouLevel> m_juedouLevel_list
+{
+	get
+	{
+		return m_juedouLevel_dic.DataList;
+	}
+}
+
+public JsonDic<JDjuedouLevel> m_juedouLevel_dic
+{
+	get
+	{
+		if(_m_juedouLevel_dic==null)
+		{
+			string _data=LoadFile("juedouLevel",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_juedouLevel_dic=new JsonDic<JDjuedouLevel>(_data);
+		}
+		return _m_juedouLevel_dic;
+	}
+}
+

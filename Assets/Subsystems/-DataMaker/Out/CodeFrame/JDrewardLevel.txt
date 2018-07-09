@@ -1,0 +1,34 @@
+﻿JsonDic<JDrewardLevel> _m_rewardLevel_dic;
+public void rewardLevel_Pre()
+{
+	if(_m_rewardLevel_dic==null)
+	{
+		if(m_rewardLevel_dic.Count>0)return;
+	}
+}
+
+public List<JDrewardLevel> m_rewardLevel_list
+{
+	get
+	{
+		return m_rewardLevel_dic.DataList;
+	}
+}
+
+public JsonDic<JDrewardLevel> m_rewardLevel_dic
+{
+	get
+	{
+		if(_m_rewardLevel_dic==null)
+		{
+			string _data=LoadFile("rewardLevel",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_rewardLevel_dic=new JsonDic<JDrewardLevel>(_data);
+		}
+		return _m_rewardLevel_dic;
+	}
+}
+

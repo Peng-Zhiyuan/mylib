@@ -1,0 +1,34 @@
+﻿JsonDic<JDpaybuy> _m_paybuy_dic;
+public void paybuy_Pre()
+{
+	if(_m_paybuy_dic==null)
+	{
+		if(m_paybuy_dic.Count>0)return;
+	}
+}
+
+public List<JDpaybuy> m_paybuy_list
+{
+	get
+	{
+		return m_paybuy_dic.DataList;
+	}
+}
+
+public JsonDic<JDpaybuy> m_paybuy_dic
+{
+	get
+	{
+		if(_m_paybuy_dic==null)
+		{
+			string _data=LoadFile("paybuy",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_paybuy_dic=new JsonDic<JDpaybuy>(_data);
+		}
+		return _m_paybuy_dic;
+	}
+}
+

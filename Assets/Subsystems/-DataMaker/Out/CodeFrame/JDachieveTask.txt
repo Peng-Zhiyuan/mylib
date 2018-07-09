@@ -1,0 +1,34 @@
+﻿JsonDic<JDachieveTask> _m_achieveTask_dic;
+public void achieveTask_Pre()
+{
+	if(_m_achieveTask_dic==null)
+	{
+		if(m_achieveTask_dic.Count>0)return;
+	}
+}
+
+public List<JDachieveTask> m_achieveTask_list
+{
+	get
+	{
+		return m_achieveTask_dic.DataList;
+	}
+}
+
+public JsonDic<JDachieveTask> m_achieveTask_dic
+{
+	get
+	{
+		if(_m_achieveTask_dic==null)
+		{
+			string _data=LoadFile("achieveTask",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_achieveTask_dic=new JsonDic<JDachieveTask>(_data);
+		}
+		return _m_achieveTask_dic;
+	}
+}
+

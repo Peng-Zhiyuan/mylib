@@ -1,0 +1,34 @@
+﻿JsonDic<JDTipsLoading> _m_TipsLoading_dic;
+public void TipsLoading_Pre()
+{
+	if(_m_TipsLoading_dic==null)
+	{
+		if(m_TipsLoading_dic.Count>0)return;
+	}
+}
+
+public List<JDTipsLoading> m_TipsLoading_list
+{
+	get
+	{
+		return m_TipsLoading_dic.DataList;
+	}
+}
+
+public JsonDic<JDTipsLoading> m_TipsLoading_dic
+{
+	get
+	{
+		if(_m_TipsLoading_dic==null)
+		{
+			string _data=LoadFile("TipsLoading",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_TipsLoading_dic=new JsonDic<JDTipsLoading>(_data);
+		}
+		return _m_TipsLoading_dic;
+	}
+}
+

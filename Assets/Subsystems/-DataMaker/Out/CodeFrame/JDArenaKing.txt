@@ -1,0 +1,34 @@
+﻿JsonDic<JDArenaKing> _m_ArenaKing_dic;
+public void ArenaKing_Pre()
+{
+	if(_m_ArenaKing_dic==null)
+	{
+		if(m_ArenaKing_dic.Count>0)return;
+	}
+}
+
+public List<JDArenaKing> m_ArenaKing_list
+{
+	get
+	{
+		return m_ArenaKing_dic.DataList;
+	}
+}
+
+public JsonDic<JDArenaKing> m_ArenaKing_dic
+{
+	get
+	{
+		if(_m_ArenaKing_dic==null)
+		{
+			string _data=LoadFile("ArenaKing",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_ArenaKing_dic=new JsonDic<JDArenaKing>(_data);
+		}
+		return _m_ArenaKing_dic;
+	}
+}
+

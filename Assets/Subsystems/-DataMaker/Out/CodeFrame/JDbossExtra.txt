@@ -1,0 +1,34 @@
+﻿JsonDic<JDbossExtra> _m_bossExtra_dic;
+public void bossExtra_Pre()
+{
+	if(_m_bossExtra_dic==null)
+	{
+		if(m_bossExtra_dic.Count>0)return;
+	}
+}
+
+public List<JDbossExtra> m_bossExtra_list
+{
+	get
+	{
+		return m_bossExtra_dic.DataList;
+	}
+}
+
+public JsonDic<JDbossExtra> m_bossExtra_dic
+{
+	get
+	{
+		if(_m_bossExtra_dic==null)
+		{
+			string _data=LoadFile("bossExtra",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_bossExtra_dic=new JsonDic<JDbossExtra>(_data);
+		}
+		return _m_bossExtra_dic;
+	}
+}
+

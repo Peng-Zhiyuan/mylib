@@ -1,0 +1,34 @@
+﻿JsonDic<JDfx9> _m_fx9_dic;
+public void fx9_Pre()
+{
+	if(_m_fx9_dic==null)
+	{
+		if(m_fx9_dic.Count>0)return;
+	}
+}
+
+public List<JDfx9> m_fx9_list
+{
+	get
+	{
+		return m_fx9_dic.DataList;
+	}
+}
+
+public JsonDic<JDfx9> m_fx9_dic
+{
+	get
+	{
+		if(_m_fx9_dic==null)
+		{
+			string _data=LoadFile("fx9",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_fx9_dic=new JsonDic<JDfx9>(_data);
+		}
+		return _m_fx9_dic;
+	}
+}
+

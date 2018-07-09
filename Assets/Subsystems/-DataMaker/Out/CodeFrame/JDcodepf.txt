@@ -1,0 +1,34 @@
+﻿JsonDic<JDcodepf> _m_codepf_dic;
+public void codepf_Pre()
+{
+	if(_m_codepf_dic==null)
+	{
+		if(m_codepf_dic.Count>0)return;
+	}
+}
+
+public List<JDcodepf> m_codepf_list
+{
+	get
+	{
+		return m_codepf_dic.DataList;
+	}
+}
+
+public JsonDic<JDcodepf> m_codepf_dic
+{
+	get
+	{
+		if(_m_codepf_dic==null)
+		{
+			string _data=LoadFile("codepf",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_codepf_dic=new JsonDic<JDcodepf>(_data);
+		}
+		return _m_codepf_dic;
+	}
+}
+

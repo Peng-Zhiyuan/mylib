@@ -1,0 +1,34 @@
+﻿JsonDic<JDNSkillPos> _m_NSkillPos_dic;
+public void NSkillPos_Pre()
+{
+	if(_m_NSkillPos_dic==null)
+	{
+		if(m_NSkillPos_dic.Count>0)return;
+	}
+}
+
+public List<JDNSkillPos> m_NSkillPos_list
+{
+	get
+	{
+		return m_NSkillPos_dic.DataList;
+	}
+}
+
+public JsonDic<JDNSkillPos> m_NSkillPos_dic
+{
+	get
+	{
+		if(_m_NSkillPos_dic==null)
+		{
+			string _data=LoadFile("NSkillPos",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NSkillPos_dic=new JsonDic<JDNSkillPos>(_data);
+		}
+		return _m_NSkillPos_dic;
+	}
+}
+

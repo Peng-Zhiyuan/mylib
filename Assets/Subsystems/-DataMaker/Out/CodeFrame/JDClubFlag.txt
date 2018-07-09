@@ -1,0 +1,34 @@
+﻿JsonDic<JDClubFlag> _m_ClubFlag_dic;
+public void ClubFlag_Pre()
+{
+	if(_m_ClubFlag_dic==null)
+	{
+		if(m_ClubFlag_dic.Count>0)return;
+	}
+}
+
+public List<JDClubFlag> m_ClubFlag_list
+{
+	get
+	{
+		return m_ClubFlag_dic.DataList;
+	}
+}
+
+public JsonDic<JDClubFlag> m_ClubFlag_dic
+{
+	get
+	{
+		if(_m_ClubFlag_dic==null)
+		{
+			string _data=LoadFile("ClubFlag",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_ClubFlag_dic=new JsonDic<JDClubFlag>(_data);
+		}
+		return _m_ClubFlag_dic;
+	}
+}
+

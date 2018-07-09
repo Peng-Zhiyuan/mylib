@@ -1,0 +1,34 @@
+﻿JsonDic<JDbossMap> _m_bossMap_dic;
+public void bossMap_Pre()
+{
+	if(_m_bossMap_dic==null)
+	{
+		if(m_bossMap_dic.Count>0)return;
+	}
+}
+
+public List<JDbossMap> m_bossMap_list
+{
+	get
+	{
+		return m_bossMap_dic.DataList;
+	}
+}
+
+public JsonDic<JDbossMap> m_bossMap_dic
+{
+	get
+	{
+		if(_m_bossMap_dic==null)
+		{
+			string _data=LoadFile("bossMap",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_bossMap_dic=new JsonDic<JDbossMap>(_data);
+		}
+		return _m_bossMap_dic;
+	}
+}
+

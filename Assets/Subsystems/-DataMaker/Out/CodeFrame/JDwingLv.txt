@@ -1,0 +1,34 @@
+﻿JsonDic<JDwingLv> _m_wingLv_dic;
+public void wingLv_Pre()
+{
+	if(_m_wingLv_dic==null)
+	{
+		if(m_wingLv_dic.Count>0)return;
+	}
+}
+
+public List<JDwingLv> m_wingLv_list
+{
+	get
+	{
+		return m_wingLv_dic.DataList;
+	}
+}
+
+public JsonDic<JDwingLv> m_wingLv_dic
+{
+	get
+	{
+		if(_m_wingLv_dic==null)
+		{
+			string _data=LoadFile("wingLv",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_wingLv_dic=new JsonDic<JDwingLv>(_data);
+		}
+		return _m_wingLv_dic;
+	}
+}
+

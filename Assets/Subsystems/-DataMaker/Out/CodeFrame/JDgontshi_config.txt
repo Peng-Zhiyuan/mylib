@@ -1,0 +1,34 @@
+﻿JsonDic<JDgontshi_config> _m_gontshi_config_dic;
+public void gontshi_config_Pre()
+{
+	if(_m_gontshi_config_dic==null)
+	{
+		if(m_gontshi_config_dic.Count>0)return;
+	}
+}
+
+public List<JDgontshi_config> m_gontshi_config_list
+{
+	get
+	{
+		return m_gontshi_config_dic.DataList;
+	}
+}
+
+public JsonDic<JDgontshi_config> m_gontshi_config_dic
+{
+	get
+	{
+		if(_m_gontshi_config_dic==null)
+		{
+			string _data=LoadFile("gontshi_config",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_gontshi_config_dic=new JsonDic<JDgontshi_config>(_data);
+		}
+		return _m_gontshi_config_dic;
+	}
+}
+

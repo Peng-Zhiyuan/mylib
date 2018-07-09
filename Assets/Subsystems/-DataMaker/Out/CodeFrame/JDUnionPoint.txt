@@ -1,0 +1,34 @@
+﻿JsonDic<JDUnionPoint> _m_UnionPoint_dic;
+public void UnionPoint_Pre()
+{
+	if(_m_UnionPoint_dic==null)
+	{
+		if(m_UnionPoint_dic.Count>0)return;
+	}
+}
+
+public List<JDUnionPoint> m_UnionPoint_list
+{
+	get
+	{
+		return m_UnionPoint_dic.DataList;
+	}
+}
+
+public JsonDic<JDUnionPoint> m_UnionPoint_dic
+{
+	get
+	{
+		if(_m_UnionPoint_dic==null)
+		{
+			string _data=LoadFile("UnionPoint",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_UnionPoint_dic=new JsonDic<JDUnionPoint>(_data);
+		}
+		return _m_UnionPoint_dic;
+	}
+}
+

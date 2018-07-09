@@ -1,0 +1,34 @@
+﻿JsonDic<JDSystemOpen> _m_SystemOpen_dic;
+public void SystemOpen_Pre()
+{
+	if(_m_SystemOpen_dic==null)
+	{
+		if(m_SystemOpen_dic.Count>0)return;
+	}
+}
+
+public List<JDSystemOpen> m_SystemOpen_list
+{
+	get
+	{
+		return m_SystemOpen_dic.DataList;
+	}
+}
+
+public JsonDic<JDSystemOpen> m_SystemOpen_dic
+{
+	get
+	{
+		if(_m_SystemOpen_dic==null)
+		{
+			string _data=LoadFile("SystemOpen",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_SystemOpen_dic=new JsonDic<JDSystemOpen>(_data);
+		}
+		return _m_SystemOpen_dic;
+	}
+}
+

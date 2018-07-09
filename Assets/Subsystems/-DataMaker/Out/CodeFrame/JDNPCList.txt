@@ -1,0 +1,34 @@
+﻿JsonDic<JDNPCList> _m_NPCList_dic;
+public void NPCList_Pre()
+{
+	if(_m_NPCList_dic==null)
+	{
+		if(m_NPCList_dic.Count>0)return;
+	}
+}
+
+public List<JDNPCList> m_NPCList_list
+{
+	get
+	{
+		return m_NPCList_dic.DataList;
+	}
+}
+
+public JsonDic<JDNPCList> m_NPCList_dic
+{
+	get
+	{
+		if(_m_NPCList_dic==null)
+		{
+			string _data=LoadFile("NPCList",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NPCList_dic=new JsonDic<JDNPCList>(_data);
+		}
+		return _m_NPCList_dic;
+	}
+}
+

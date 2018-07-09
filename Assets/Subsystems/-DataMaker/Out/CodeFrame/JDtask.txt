@@ -1,0 +1,34 @@
+﻿JsonDic<JDtask> _m_task_dic;
+public void task_Pre()
+{
+	if(_m_task_dic==null)
+	{
+		if(m_task_dic.Count>0)return;
+	}
+}
+
+public List<JDtask> m_task_list
+{
+	get
+	{
+		return m_task_dic.DataList;
+	}
+}
+
+public JsonDic<JDtask> m_task_dic
+{
+	get
+	{
+		if(_m_task_dic==null)
+		{
+			string _data=LoadFile("task",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_task_dic=new JsonDic<JDtask>(_data);
+		}
+		return _m_task_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDpetRank> _m_petRank_dic;
+public void petRank_Pre()
+{
+	if(_m_petRank_dic==null)
+	{
+		if(m_petRank_dic.Count>0)return;
+	}
+}
+
+public List<JDpetRank> m_petRank_list
+{
+	get
+	{
+		return m_petRank_dic.DataList;
+	}
+}
+
+public JsonDic<JDpetRank> m_petRank_dic
+{
+	get
+	{
+		if(_m_petRank_dic==null)
+		{
+			string _data=LoadFile("petRank",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_petRank_dic=new JsonDic<JDpetRank>(_data);
+		}
+		return _m_petRank_dic;
+	}
+}
+

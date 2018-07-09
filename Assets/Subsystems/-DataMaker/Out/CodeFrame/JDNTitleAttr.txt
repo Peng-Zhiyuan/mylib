@@ -1,0 +1,34 @@
+﻿JsonDic<JDNTitleAttr> _m_NTitleAttr_dic;
+public void NTitleAttr_Pre()
+{
+	if(_m_NTitleAttr_dic==null)
+	{
+		if(m_NTitleAttr_dic.Count>0)return;
+	}
+}
+
+public List<JDNTitleAttr> m_NTitleAttr_list
+{
+	get
+	{
+		return m_NTitleAttr_dic.DataList;
+	}
+}
+
+public JsonDic<JDNTitleAttr> m_NTitleAttr_dic
+{
+	get
+	{
+		if(_m_NTitleAttr_dic==null)
+		{
+			string _data=LoadFile("NTitleAttr",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NTitleAttr_dic=new JsonDic<JDNTitleAttr>(_data);
+		}
+		return _m_NTitleAttr_dic;
+	}
+}
+

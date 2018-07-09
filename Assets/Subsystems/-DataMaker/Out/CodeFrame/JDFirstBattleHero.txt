@@ -1,0 +1,34 @@
+﻿JsonDic<JDFirstBattleHero> _m_FirstBattleHero_dic;
+public void FirstBattleHero_Pre()
+{
+	if(_m_FirstBattleHero_dic==null)
+	{
+		if(m_FirstBattleHero_dic.Count>0)return;
+	}
+}
+
+public List<JDFirstBattleHero> m_FirstBattleHero_list
+{
+	get
+	{
+		return m_FirstBattleHero_dic.DataList;
+	}
+}
+
+public JsonDic<JDFirstBattleHero> m_FirstBattleHero_dic
+{
+	get
+	{
+		if(_m_FirstBattleHero_dic==null)
+		{
+			string _data=LoadFile("FirstBattleHero",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_FirstBattleHero_dic=new JsonDic<JDFirstBattleHero>(_data);
+		}
+		return _m_FirstBattleHero_dic;
+	}
+}
+

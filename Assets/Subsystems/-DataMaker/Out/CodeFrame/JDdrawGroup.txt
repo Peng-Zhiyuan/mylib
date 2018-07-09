@@ -1,0 +1,34 @@
+﻿JsonDic<JDdrawGroup> _m_drawGroup_dic;
+public void drawGroup_Pre()
+{
+	if(_m_drawGroup_dic==null)
+	{
+		if(m_drawGroup_dic.Count>0)return;
+	}
+}
+
+public List<JDdrawGroup> m_drawGroup_list
+{
+	get
+	{
+		return m_drawGroup_dic.DataList;
+	}
+}
+
+public JsonDic<JDdrawGroup> m_drawGroup_dic
+{
+	get
+	{
+		if(_m_drawGroup_dic==null)
+		{
+			string _data=LoadFile("drawGroup",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_drawGroup_dic=new JsonDic<JDdrawGroup>(_data);
+		}
+		return _m_drawGroup_dic;
+	}
+}
+

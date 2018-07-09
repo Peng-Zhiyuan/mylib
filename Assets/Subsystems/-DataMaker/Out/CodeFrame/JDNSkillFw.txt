@@ -1,0 +1,34 @@
+﻿JsonDic<JDNSkillFw> _m_NSkillFw_dic;
+public void NSkillFw_Pre()
+{
+	if(_m_NSkillFw_dic==null)
+	{
+		if(m_NSkillFw_dic.Count>0)return;
+	}
+}
+
+public List<JDNSkillFw> m_NSkillFw_list
+{
+	get
+	{
+		return m_NSkillFw_dic.DataList;
+	}
+}
+
+public JsonDic<JDNSkillFw> m_NSkillFw_dic
+{
+	get
+	{
+		if(_m_NSkillFw_dic==null)
+		{
+			string _data=LoadFile("NSkillFw",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NSkillFw_dic=new JsonDic<JDNSkillFw>(_data);
+		}
+		return _m_NSkillFw_dic;
+	}
+}
+

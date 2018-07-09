@@ -1,0 +1,34 @@
+﻿JsonDic<JDrandAttr> _m_randAttr_dic;
+public void randAttr_Pre()
+{
+	if(_m_randAttr_dic==null)
+	{
+		if(m_randAttr_dic.Count>0)return;
+	}
+}
+
+public List<JDrandAttr> m_randAttr_list
+{
+	get
+	{
+		return m_randAttr_dic.DataList;
+	}
+}
+
+public JsonDic<JDrandAttr> m_randAttr_dic
+{
+	get
+	{
+		if(_m_randAttr_dic==null)
+		{
+			string _data=LoadFile("randAttr",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_randAttr_dic=new JsonDic<JDrandAttr>(_data);
+		}
+		return _m_randAttr_dic;
+	}
+}
+

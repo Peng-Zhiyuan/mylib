@@ -1,0 +1,34 @@
+﻿JsonDic<JDweaponType> _m_weaponType_dic;
+public void weaponType_Pre()
+{
+	if(_m_weaponType_dic==null)
+	{
+		if(m_weaponType_dic.Count>0)return;
+	}
+}
+
+public List<JDweaponType> m_weaponType_list
+{
+	get
+	{
+		return m_weaponType_dic.DataList;
+	}
+}
+
+public JsonDic<JDweaponType> m_weaponType_dic
+{
+	get
+	{
+		if(_m_weaponType_dic==null)
+		{
+			string _data=LoadFile("weaponType",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_weaponType_dic=new JsonDic<JDweaponType>(_data);
+		}
+		return _m_weaponType_dic;
+	}
+}
+

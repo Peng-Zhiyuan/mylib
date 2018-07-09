@@ -1,0 +1,34 @@
+﻿JsonDic<JDpayment> _m_payment_dic;
+public void payment_Pre()
+{
+	if(_m_payment_dic==null)
+	{
+		if(m_payment_dic.Count>0)return;
+	}
+}
+
+public List<JDpayment> m_payment_list
+{
+	get
+	{
+		return m_payment_dic.DataList;
+	}
+}
+
+public JsonDic<JDpayment> m_payment_dic
+{
+	get
+	{
+		if(_m_payment_dic==null)
+		{
+			string _data=LoadFile("payment",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_payment_dic=new JsonDic<JDpayment>(_data);
+		}
+		return _m_payment_dic;
+	}
+}
+

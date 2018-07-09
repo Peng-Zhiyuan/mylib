@@ -1,0 +1,34 @@
+﻿JsonDic<JDclubBase1> _m_clubBase1_dic;
+public void clubBase1_Pre()
+{
+	if(_m_clubBase1_dic==null)
+	{
+		if(m_clubBase1_dic.Count>0)return;
+	}
+}
+
+public List<JDclubBase1> m_clubBase1_list
+{
+	get
+	{
+		return m_clubBase1_dic.DataList;
+	}
+}
+
+public JsonDic<JDclubBase1> m_clubBase1_dic
+{
+	get
+	{
+		if(_m_clubBase1_dic==null)
+		{
+			string _data=LoadFile("clubBase1",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_clubBase1_dic=new JsonDic<JDclubBase1>(_data);
+		}
+		return _m_clubBase1_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDNLevel> _m_NLevel_dic;
+public void NLevel_Pre()
+{
+	if(_m_NLevel_dic==null)
+	{
+		if(m_NLevel_dic.Count>0)return;
+	}
+}
+
+public List<JDNLevel> m_NLevel_list
+{
+	get
+	{
+		return m_NLevel_dic.DataList;
+	}
+}
+
+public JsonDic<JDNLevel> m_NLevel_dic
+{
+	get
+	{
+		if(_m_NLevel_dic==null)
+		{
+			string _data=LoadFile("NLevel",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NLevel_dic=new JsonDic<JDNLevel>(_data);
+		}
+		return _m_NLevel_dic;
+	}
+}
+

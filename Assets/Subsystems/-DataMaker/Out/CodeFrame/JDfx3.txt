@@ -1,0 +1,34 @@
+﻿JsonDic<JDfx3> _m_fx3_dic;
+public void fx3_Pre()
+{
+	if(_m_fx3_dic==null)
+	{
+		if(m_fx3_dic.Count>0)return;
+	}
+}
+
+public List<JDfx3> m_fx3_list
+{
+	get
+	{
+		return m_fx3_dic.DataList;
+	}
+}
+
+public JsonDic<JDfx3> m_fx3_dic
+{
+	get
+	{
+		if(_m_fx3_dic==null)
+		{
+			string _data=LoadFile("fx3",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_fx3_dic=new JsonDic<JDfx3>(_data);
+		}
+		return _m_fx3_dic;
+	}
+}
+

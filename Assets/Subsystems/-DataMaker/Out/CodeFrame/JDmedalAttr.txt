@@ -1,0 +1,34 @@
+﻿JsonDic<JDmedalAttr> _m_medalAttr_dic;
+public void medalAttr_Pre()
+{
+	if(_m_medalAttr_dic==null)
+	{
+		if(m_medalAttr_dic.Count>0)return;
+	}
+}
+
+public List<JDmedalAttr> m_medalAttr_list
+{
+	get
+	{
+		return m_medalAttr_dic.DataList;
+	}
+}
+
+public JsonDic<JDmedalAttr> m_medalAttr_dic
+{
+	get
+	{
+		if(_m_medalAttr_dic==null)
+		{
+			string _data=LoadFile("medalAttr",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_medalAttr_dic=new JsonDic<JDmedalAttr>(_data);
+		}
+		return _m_medalAttr_dic;
+	}
+}
+

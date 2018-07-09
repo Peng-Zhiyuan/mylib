@@ -1,0 +1,34 @@
+﻿JsonDic<JDtopAttr> _m_topAttr_dic;
+public void topAttr_Pre()
+{
+	if(_m_topAttr_dic==null)
+	{
+		if(m_topAttr_dic.Count>0)return;
+	}
+}
+
+public List<JDtopAttr> m_topAttr_list
+{
+	get
+	{
+		return m_topAttr_dic.DataList;
+	}
+}
+
+public JsonDic<JDtopAttr> m_topAttr_dic
+{
+	get
+	{
+		if(_m_topAttr_dic==null)
+		{
+			string _data=LoadFile("topAttr",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_topAttr_dic=new JsonDic<JDtopAttr>(_data);
+		}
+		return _m_topAttr_dic;
+	}
+}
+

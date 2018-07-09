@@ -1,0 +1,34 @@
+﻿JsonDic<JDNAvatarShowConfig> _m_NAvatarShowConfig_dic;
+public void NAvatarShowConfig_Pre()
+{
+	if(_m_NAvatarShowConfig_dic==null)
+	{
+		if(m_NAvatarShowConfig_dic.Count>0)return;
+	}
+}
+
+public List<JDNAvatarShowConfig> m_NAvatarShowConfig_list
+{
+	get
+	{
+		return m_NAvatarShowConfig_dic.DataList;
+	}
+}
+
+public JsonDic<JDNAvatarShowConfig> m_NAvatarShowConfig_dic
+{
+	get
+	{
+		if(_m_NAvatarShowConfig_dic==null)
+		{
+			string _data=LoadFile("NAvatarShowConfig",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NAvatarShowConfig_dic=new JsonDic<JDNAvatarShowConfig>(_data);
+		}
+		return _m_NAvatarShowConfig_dic;
+	}
+}
+

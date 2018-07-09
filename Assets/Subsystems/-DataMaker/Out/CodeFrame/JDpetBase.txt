@@ -1,0 +1,34 @@
+﻿JsonDic<JDpetBase> _m_petBase_dic;
+public void petBase_Pre()
+{
+	if(_m_petBase_dic==null)
+	{
+		if(m_petBase_dic.Count>0)return;
+	}
+}
+
+public List<JDpetBase> m_petBase_list
+{
+	get
+	{
+		return m_petBase_dic.DataList;
+	}
+}
+
+public JsonDic<JDpetBase> m_petBase_dic
+{
+	get
+	{
+		if(_m_petBase_dic==null)
+		{
+			string _data=LoadFile("petBase",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_petBase_dic=new JsonDic<JDpetBase>(_data);
+		}
+		return _m_petBase_dic;
+	}
+}
+

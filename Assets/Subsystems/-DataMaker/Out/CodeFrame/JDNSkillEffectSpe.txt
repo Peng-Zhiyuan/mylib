@@ -1,0 +1,34 @@
+﻿JsonDic<JDNSkillEffectSpe> _m_NSkillEffectSpe_dic;
+public void NSkillEffectSpe_Pre()
+{
+	if(_m_NSkillEffectSpe_dic==null)
+	{
+		if(m_NSkillEffectSpe_dic.Count>0)return;
+	}
+}
+
+public List<JDNSkillEffectSpe> m_NSkillEffectSpe_list
+{
+	get
+	{
+		return m_NSkillEffectSpe_dic.DataList;
+	}
+}
+
+public JsonDic<JDNSkillEffectSpe> m_NSkillEffectSpe_dic
+{
+	get
+	{
+		if(_m_NSkillEffectSpe_dic==null)
+		{
+			string _data=LoadFile("NSkillEffectSpe",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NSkillEffectSpe_dic=new JsonDic<JDNSkillEffectSpe>(_data);
+		}
+		return _m_NSkillEffectSpe_dic;
+	}
+}
+

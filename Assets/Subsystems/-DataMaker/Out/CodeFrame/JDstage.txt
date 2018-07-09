@@ -1,0 +1,34 @@
+﻿JsonDic<JDstage> _m_stage_dic;
+public void stage_Pre()
+{
+	if(_m_stage_dic==null)
+	{
+		if(m_stage_dic.Count>0)return;
+	}
+}
+
+public List<JDstage> m_stage_list
+{
+	get
+	{
+		return m_stage_dic.DataList;
+	}
+}
+
+public JsonDic<JDstage> m_stage_dic
+{
+	get
+	{
+		if(_m_stage_dic==null)
+		{
+			string _data=LoadFile("stage",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_stage_dic=new JsonDic<JDstage>(_data);
+		}
+		return _m_stage_dic;
+	}
+}
+

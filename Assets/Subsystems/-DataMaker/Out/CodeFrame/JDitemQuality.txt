@@ -1,0 +1,34 @@
+﻿JsonDic<JDitemQuality> _m_itemQuality_dic;
+public void itemQuality_Pre()
+{
+	if(_m_itemQuality_dic==null)
+	{
+		if(m_itemQuality_dic.Count>0)return;
+	}
+}
+
+public List<JDitemQuality> m_itemQuality_list
+{
+	get
+	{
+		return m_itemQuality_dic.DataList;
+	}
+}
+
+public JsonDic<JDitemQuality> m_itemQuality_dic
+{
+	get
+	{
+		if(_m_itemQuality_dic==null)
+		{
+			string _data=LoadFile("itemQuality",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_itemQuality_dic=new JsonDic<JDitemQuality>(_data);
+		}
+		return _m_itemQuality_dic;
+	}
+}
+

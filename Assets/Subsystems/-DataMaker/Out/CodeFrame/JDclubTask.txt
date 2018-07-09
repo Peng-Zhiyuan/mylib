@@ -1,0 +1,34 @@
+﻿JsonDic<JDclubTask> _m_clubTask_dic;
+public void clubTask_Pre()
+{
+	if(_m_clubTask_dic==null)
+	{
+		if(m_clubTask_dic.Count>0)return;
+	}
+}
+
+public List<JDclubTask> m_clubTask_list
+{
+	get
+	{
+		return m_clubTask_dic.DataList;
+	}
+}
+
+public JsonDic<JDclubTask> m_clubTask_dic
+{
+	get
+	{
+		if(_m_clubTask_dic==null)
+		{
+			string _data=LoadFile("clubTask",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_clubTask_dic=new JsonDic<JDclubTask>(_data);
+		}
+		return _m_clubTask_dic;
+	}
+}
+

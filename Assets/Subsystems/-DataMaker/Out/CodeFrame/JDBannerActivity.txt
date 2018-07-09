@@ -1,0 +1,34 @@
+﻿JsonDic<JDBannerActivity> _m_BannerActivity_dic;
+public void BannerActivity_Pre()
+{
+	if(_m_BannerActivity_dic==null)
+	{
+		if(m_BannerActivity_dic.Count>0)return;
+	}
+}
+
+public List<JDBannerActivity> m_BannerActivity_list
+{
+	get
+	{
+		return m_BannerActivity_dic.DataList;
+	}
+}
+
+public JsonDic<JDBannerActivity> m_BannerActivity_dic
+{
+	get
+	{
+		if(_m_BannerActivity_dic==null)
+		{
+			string _data=LoadFile("BannerActivity",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_BannerActivity_dic=new JsonDic<JDBannerActivity>(_data);
+		}
+		return _m_BannerActivity_dic;
+	}
+}
+

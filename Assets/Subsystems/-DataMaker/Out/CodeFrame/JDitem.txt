@@ -1,0 +1,34 @@
+﻿JsonDic<JDitem> _m_item_dic;
+public void item_Pre()
+{
+	if(_m_item_dic==null)
+	{
+		if(m_item_dic.Count>0)return;
+	}
+}
+
+public List<JDitem> m_item_list
+{
+	get
+	{
+		return m_item_dic.DataList;
+	}
+}
+
+public JsonDic<JDitem> m_item_dic
+{
+	get
+	{
+		if(_m_item_dic==null)
+		{
+			string _data=LoadFile("item",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_item_dic=new JsonDic<JDitem>(_data);
+		}
+		return _m_item_dic;
+	}
+}
+

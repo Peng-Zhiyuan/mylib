@@ -1,0 +1,34 @@
+﻿JsonDic<JDitemGroup> _m_itemGroup_dic;
+public void itemGroup_Pre()
+{
+	if(_m_itemGroup_dic==null)
+	{
+		if(m_itemGroup_dic.Count>0)return;
+	}
+}
+
+public List<JDitemGroup> m_itemGroup_list
+{
+	get
+	{
+		return m_itemGroup_dic.DataList;
+	}
+}
+
+public JsonDic<JDitemGroup> m_itemGroup_dic
+{
+	get
+	{
+		if(_m_itemGroup_dic==null)
+		{
+			string _data=LoadFile("itemGroup",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_itemGroup_dic=new JsonDic<JDitemGroup>(_data);
+		}
+		return _m_itemGroup_dic;
+	}
+}
+

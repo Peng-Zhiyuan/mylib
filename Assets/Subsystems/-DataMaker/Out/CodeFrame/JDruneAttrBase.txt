@@ -1,0 +1,34 @@
+﻿JsonDic<JDruneAttrBase> _m_runeAttrBase_dic;
+public void runeAttrBase_Pre()
+{
+	if(_m_runeAttrBase_dic==null)
+	{
+		if(m_runeAttrBase_dic.Count>0)return;
+	}
+}
+
+public List<JDruneAttrBase> m_runeAttrBase_list
+{
+	get
+	{
+		return m_runeAttrBase_dic.DataList;
+	}
+}
+
+public JsonDic<JDruneAttrBase> m_runeAttrBase_dic
+{
+	get
+	{
+		if(_m_runeAttrBase_dic==null)
+		{
+			string _data=LoadFile("runeAttrBase",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_runeAttrBase_dic=new JsonDic<JDruneAttrBase>(_data);
+		}
+		return _m_runeAttrBase_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDClubTaskGroup> _m_ClubTaskGroup_dic;
+public void ClubTaskGroup_Pre()
+{
+	if(_m_ClubTaskGroup_dic==null)
+	{
+		if(m_ClubTaskGroup_dic.Count>0)return;
+	}
+}
+
+public List<JDClubTaskGroup> m_ClubTaskGroup_list
+{
+	get
+	{
+		return m_ClubTaskGroup_dic.DataList;
+	}
+}
+
+public JsonDic<JDClubTaskGroup> m_ClubTaskGroup_dic
+{
+	get
+	{
+		if(_m_ClubTaskGroup_dic==null)
+		{
+			string _data=LoadFile("ClubTaskGroup",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_ClubTaskGroup_dic=new JsonDic<JDClubTaskGroup>(_data);
+		}
+		return _m_ClubTaskGroup_dic;
+	}
+}
+

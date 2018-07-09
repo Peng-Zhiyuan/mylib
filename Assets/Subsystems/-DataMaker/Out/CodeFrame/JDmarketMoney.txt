@@ -1,0 +1,34 @@
+﻿JsonDic<JDmarketMoney> _m_marketMoney_dic;
+public void marketMoney_Pre()
+{
+	if(_m_marketMoney_dic==null)
+	{
+		if(m_marketMoney_dic.Count>0)return;
+	}
+}
+
+public List<JDmarketMoney> m_marketMoney_list
+{
+	get
+	{
+		return m_marketMoney_dic.DataList;
+	}
+}
+
+public JsonDic<JDmarketMoney> m_marketMoney_dic
+{
+	get
+	{
+		if(_m_marketMoney_dic==null)
+		{
+			string _data=LoadFile("marketMoney",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_marketMoney_dic=new JsonDic<JDmarketMoney>(_data);
+		}
+		return _m_marketMoney_dic;
+	}
+}
+

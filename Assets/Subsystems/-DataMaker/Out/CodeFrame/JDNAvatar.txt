@@ -1,0 +1,34 @@
+﻿JsonDic<JDNAvatar> _m_NAvatar_dic;
+public void NAvatar_Pre()
+{
+	if(_m_NAvatar_dic==null)
+	{
+		if(m_NAvatar_dic.Count>0)return;
+	}
+}
+
+public List<JDNAvatar> m_NAvatar_list
+{
+	get
+	{
+		return m_NAvatar_dic.DataList;
+	}
+}
+
+public JsonDic<JDNAvatar> m_NAvatar_dic
+{
+	get
+	{
+		if(_m_NAvatar_dic==null)
+		{
+			string _data=LoadFile("NAvatar",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NAvatar_dic=new JsonDic<JDNAvatar>(_data);
+		}
+		return _m_NAvatar_dic;
+	}
+}
+

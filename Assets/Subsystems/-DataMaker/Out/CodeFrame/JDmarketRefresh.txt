@@ -1,0 +1,34 @@
+﻿JsonDic<JDmarketRefresh> _m_marketRefresh_dic;
+public void marketRefresh_Pre()
+{
+	if(_m_marketRefresh_dic==null)
+	{
+		if(m_marketRefresh_dic.Count>0)return;
+	}
+}
+
+public List<JDmarketRefresh> m_marketRefresh_list
+{
+	get
+	{
+		return m_marketRefresh_dic.DataList;
+	}
+}
+
+public JsonDic<JDmarketRefresh> m_marketRefresh_dic
+{
+	get
+	{
+		if(_m_marketRefresh_dic==null)
+		{
+			string _data=LoadFile("marketRefresh",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_marketRefresh_dic=new JsonDic<JDmarketRefresh>(_data);
+		}
+		return _m_marketRefresh_dic;
+	}
+}
+

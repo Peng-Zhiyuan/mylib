@@ -1,0 +1,34 @@
+﻿JsonDic<JDrewardOnline> _m_rewardOnline_dic;
+public void rewardOnline_Pre()
+{
+	if(_m_rewardOnline_dic==null)
+	{
+		if(m_rewardOnline_dic.Count>0)return;
+	}
+}
+
+public List<JDrewardOnline> m_rewardOnline_list
+{
+	get
+	{
+		return m_rewardOnline_dic.DataList;
+	}
+}
+
+public JsonDic<JDrewardOnline> m_rewardOnline_dic
+{
+	get
+	{
+		if(_m_rewardOnline_dic==null)
+		{
+			string _data=LoadFile("rewardOnline",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_rewardOnline_dic=new JsonDic<JDrewardOnline>(_data);
+		}
+		return _m_rewardOnline_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDautoNameTeam> _m_autoNameTeam_dic;
+public void autoNameTeam_Pre()
+{
+	if(_m_autoNameTeam_dic==null)
+	{
+		if(m_autoNameTeam_dic.Count>0)return;
+	}
+}
+
+public List<JDautoNameTeam> m_autoNameTeam_list
+{
+	get
+	{
+		return m_autoNameTeam_dic.DataList;
+	}
+}
+
+public JsonDic<JDautoNameTeam> m_autoNameTeam_dic
+{
+	get
+	{
+		if(_m_autoNameTeam_dic==null)
+		{
+			string _data=LoadFile("autoNameTeam",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_autoNameTeam_dic=new JsonDic<JDautoNameTeam>(_data);
+		}
+		return _m_autoNameTeam_dic;
+	}
+}
+

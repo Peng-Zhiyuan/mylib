@@ -1,0 +1,34 @@
+﻿JsonDic<JDNBuffer> _m_NBuffer_dic;
+public void NBuffer_Pre()
+{
+	if(_m_NBuffer_dic==null)
+	{
+		if(m_NBuffer_dic.Count>0)return;
+	}
+}
+
+public List<JDNBuffer> m_NBuffer_list
+{
+	get
+	{
+		return m_NBuffer_dic.DataList;
+	}
+}
+
+public JsonDic<JDNBuffer> m_NBuffer_dic
+{
+	get
+	{
+		if(_m_NBuffer_dic==null)
+		{
+			string _data=LoadFile("NBuffer",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NBuffer_dic=new JsonDic<JDNBuffer>(_data);
+		}
+		return _m_NBuffer_dic;
+	}
+}
+

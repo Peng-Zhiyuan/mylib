@@ -1,0 +1,34 @@
+﻿JsonDic<JDNSkillEffectMove> _m_NSkillEffectMove_dic;
+public void NSkillEffectMove_Pre()
+{
+	if(_m_NSkillEffectMove_dic==null)
+	{
+		if(m_NSkillEffectMove_dic.Count>0)return;
+	}
+}
+
+public List<JDNSkillEffectMove> m_NSkillEffectMove_list
+{
+	get
+	{
+		return m_NSkillEffectMove_dic.DataList;
+	}
+}
+
+public JsonDic<JDNSkillEffectMove> m_NSkillEffectMove_dic
+{
+	get
+	{
+		if(_m_NSkillEffectMove_dic==null)
+		{
+			string _data=LoadFile("NSkillEffectMove",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NSkillEffectMove_dic=new JsonDic<JDNSkillEffectMove>(_data);
+		}
+		return _m_NSkillEffectMove_dic;
+	}
+}
+

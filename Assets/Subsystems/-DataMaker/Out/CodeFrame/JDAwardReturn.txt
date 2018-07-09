@@ -1,0 +1,34 @@
+﻿JsonDic<JDAwardReturn> _m_AwardReturn_dic;
+public void AwardReturn_Pre()
+{
+	if(_m_AwardReturn_dic==null)
+	{
+		if(m_AwardReturn_dic.Count>0)return;
+	}
+}
+
+public List<JDAwardReturn> m_AwardReturn_list
+{
+	get
+	{
+		return m_AwardReturn_dic.DataList;
+	}
+}
+
+public JsonDic<JDAwardReturn> m_AwardReturn_dic
+{
+	get
+	{
+		if(_m_AwardReturn_dic==null)
+		{
+			string _data=LoadFile("AwardReturn",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_AwardReturn_dic=new JsonDic<JDAwardReturn>(_data);
+		}
+		return _m_AwardReturn_dic;
+	}
+}
+

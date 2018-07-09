@@ -1,0 +1,34 @@
+﻿JsonDic<JDstageReset> _m_stageReset_dic;
+public void stageReset_Pre()
+{
+	if(_m_stageReset_dic==null)
+	{
+		if(m_stageReset_dic.Count>0)return;
+	}
+}
+
+public List<JDstageReset> m_stageReset_list
+{
+	get
+	{
+		return m_stageReset_dic.DataList;
+	}
+}
+
+public JsonDic<JDstageReset> m_stageReset_dic
+{
+	get
+	{
+		if(_m_stageReset_dic==null)
+		{
+			string _data=LoadFile("stageReset",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_stageReset_dic=new JsonDic<JDstageReset>(_data);
+		}
+		return _m_stageReset_dic;
+	}
+}
+

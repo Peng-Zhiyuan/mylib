@@ -1,0 +1,34 @@
+﻿JsonDic<JDladderNewSort> _m_ladderNewSort_dic;
+public void ladderNewSort_Pre()
+{
+	if(_m_ladderNewSort_dic==null)
+	{
+		if(m_ladderNewSort_dic.Count>0)return;
+	}
+}
+
+public List<JDladderNewSort> m_ladderNewSort_list
+{
+	get
+	{
+		return m_ladderNewSort_dic.DataList;
+	}
+}
+
+public JsonDic<JDladderNewSort> m_ladderNewSort_dic
+{
+	get
+	{
+		if(_m_ladderNewSort_dic==null)
+		{
+			string _data=LoadFile("ladderNewSort",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_ladderNewSort_dic=new JsonDic<JDladderNewSort>(_data);
+		}
+		return _m_ladderNewSort_dic;
+	}
+}
+

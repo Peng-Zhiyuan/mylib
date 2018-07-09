@@ -1,0 +1,34 @@
+﻿JsonDic<JDtopLv> _m_topLv_dic;
+public void topLv_Pre()
+{
+	if(_m_topLv_dic==null)
+	{
+		if(m_topLv_dic.Count>0)return;
+	}
+}
+
+public List<JDtopLv> m_topLv_list
+{
+	get
+	{
+		return m_topLv_dic.DataList;
+	}
+}
+
+public JsonDic<JDtopLv> m_topLv_dic
+{
+	get
+	{
+		if(_m_topLv_dic==null)
+		{
+			string _data=LoadFile("topLv",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_topLv_dic=new JsonDic<JDtopLv>(_data);
+		}
+		return _m_topLv_dic;
+	}
+}
+

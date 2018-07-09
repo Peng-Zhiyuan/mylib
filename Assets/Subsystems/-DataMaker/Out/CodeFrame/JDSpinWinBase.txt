@@ -1,0 +1,34 @@
+﻿JsonDic<JDSpinWinBase> _m_SpinWinBase_dic;
+public void SpinWinBase_Pre()
+{
+	if(_m_SpinWinBase_dic==null)
+	{
+		if(m_SpinWinBase_dic.Count>0)return;
+	}
+}
+
+public List<JDSpinWinBase> m_SpinWinBase_list
+{
+	get
+	{
+		return m_SpinWinBase_dic.DataList;
+	}
+}
+
+public JsonDic<JDSpinWinBase> m_SpinWinBase_dic
+{
+	get
+	{
+		if(_m_SpinWinBase_dic==null)
+		{
+			string _data=LoadFile("SpinWinBase",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_SpinWinBase_dic=new JsonDic<JDSpinWinBase>(_data);
+		}
+		return _m_SpinWinBase_dic;
+	}
+}
+

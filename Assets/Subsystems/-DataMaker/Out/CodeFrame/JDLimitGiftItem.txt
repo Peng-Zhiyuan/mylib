@@ -1,0 +1,34 @@
+﻿JsonDic<JDLimitGiftItem> _m_LimitGiftItem_dic;
+public void LimitGiftItem_Pre()
+{
+	if(_m_LimitGiftItem_dic==null)
+	{
+		if(m_LimitGiftItem_dic.Count>0)return;
+	}
+}
+
+public List<JDLimitGiftItem> m_LimitGiftItem_list
+{
+	get
+	{
+		return m_LimitGiftItem_dic.DataList;
+	}
+}
+
+public JsonDic<JDLimitGiftItem> m_LimitGiftItem_dic
+{
+	get
+	{
+		if(_m_LimitGiftItem_dic==null)
+		{
+			string _data=LoadFile("LimitGiftItem",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_LimitGiftItem_dic=new JsonDic<JDLimitGiftItem>(_data);
+		}
+		return _m_LimitGiftItem_dic;
+	}
+}
+

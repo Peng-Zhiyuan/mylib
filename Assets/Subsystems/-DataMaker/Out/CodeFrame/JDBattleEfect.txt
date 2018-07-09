@@ -1,0 +1,34 @@
+﻿JsonDic<JDBattleEfect> _m_BattleEfect_dic;
+public void BattleEfect_Pre()
+{
+	if(_m_BattleEfect_dic==null)
+	{
+		if(m_BattleEfect_dic.Count>0)return;
+	}
+}
+
+public List<JDBattleEfect> m_BattleEfect_list
+{
+	get
+	{
+		return m_BattleEfect_dic.DataList;
+	}
+}
+
+public JsonDic<JDBattleEfect> m_BattleEfect_dic
+{
+	get
+	{
+		if(_m_BattleEfect_dic==null)
+		{
+			string _data=LoadFile("BattleEfect",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_BattleEfect_dic=new JsonDic<JDBattleEfect>(_data);
+		}
+		return _m_BattleEfect_dic;
+	}
+}
+

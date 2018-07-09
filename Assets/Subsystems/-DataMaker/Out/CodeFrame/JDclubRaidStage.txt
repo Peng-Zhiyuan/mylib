@@ -1,0 +1,34 @@
+﻿JsonDic<JDclubRaidStage> _m_clubRaidStage_dic;
+public void clubRaidStage_Pre()
+{
+	if(_m_clubRaidStage_dic==null)
+	{
+		if(m_clubRaidStage_dic.Count>0)return;
+	}
+}
+
+public List<JDclubRaidStage> m_clubRaidStage_list
+{
+	get
+	{
+		return m_clubRaidStage_dic.DataList;
+	}
+}
+
+public JsonDic<JDclubRaidStage> m_clubRaidStage_dic
+{
+	get
+	{
+		if(_m_clubRaidStage_dic==null)
+		{
+			string _data=LoadFile("clubRaidStage",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_clubRaidStage_dic=new JsonDic<JDclubRaidStage>(_data);
+		}
+		return _m_clubRaidStage_dic;
+	}
+}
+

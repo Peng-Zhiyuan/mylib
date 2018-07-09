@@ -1,0 +1,34 @@
+﻿JsonDic<JDmarketItems> _m_marketItems_dic;
+public void marketItems_Pre()
+{
+	if(_m_marketItems_dic==null)
+	{
+		if(m_marketItems_dic.Count>0)return;
+	}
+}
+
+public List<JDmarketItems> m_marketItems_list
+{
+	get
+	{
+		return m_marketItems_dic.DataList;
+	}
+}
+
+public JsonDic<JDmarketItems> m_marketItems_dic
+{
+	get
+	{
+		if(_m_marketItems_dic==null)
+		{
+			string _data=LoadFile("marketItems",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_marketItems_dic=new JsonDic<JDmarketItems>(_data);
+		}
+		return _m_marketItems_dic;
+	}
+}
+

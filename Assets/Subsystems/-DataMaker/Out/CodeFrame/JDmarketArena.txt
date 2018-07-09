@@ -1,0 +1,34 @@
+﻿JsonDic<JDmarketArena> _m_marketArena_dic;
+public void marketArena_Pre()
+{
+	if(_m_marketArena_dic==null)
+	{
+		if(m_marketArena_dic.Count>0)return;
+	}
+}
+
+public List<JDmarketArena> m_marketArena_list
+{
+	get
+	{
+		return m_marketArena_dic.DataList;
+	}
+}
+
+public JsonDic<JDmarketArena> m_marketArena_dic
+{
+	get
+	{
+		if(_m_marketArena_dic==null)
+		{
+			string _data=LoadFile("marketArena",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_marketArena_dic=new JsonDic<JDmarketArena>(_data);
+		}
+		return _m_marketArena_dic;
+	}
+}
+

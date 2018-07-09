@@ -1,0 +1,34 @@
+﻿JsonDic<JDNAmbit> _m_NAmbit_dic;
+public void NAmbit_Pre()
+{
+	if(_m_NAmbit_dic==null)
+	{
+		if(m_NAmbit_dic.Count>0)return;
+	}
+}
+
+public List<JDNAmbit> m_NAmbit_list
+{
+	get
+	{
+		return m_NAmbit_dic.DataList;
+	}
+}
+
+public JsonDic<JDNAmbit> m_NAmbit_dic
+{
+	get
+	{
+		if(_m_NAmbit_dic==null)
+		{
+			string _data=LoadFile("NAmbit",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NAmbit_dic=new JsonDic<JDNAmbit>(_data);
+		}
+		return _m_NAmbit_dic;
+	}
+}
+

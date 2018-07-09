@@ -1,0 +1,34 @@
+﻿JsonDic<JDraid> _m_raid_dic;
+public void raid_Pre()
+{
+	if(_m_raid_dic==null)
+	{
+		if(m_raid_dic.Count>0)return;
+	}
+}
+
+public List<JDraid> m_raid_list
+{
+	get
+	{
+		return m_raid_dic.DataList;
+	}
+}
+
+public JsonDic<JDraid> m_raid_dic
+{
+	get
+	{
+		if(_m_raid_dic==null)
+		{
+			string _data=LoadFile("raid",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_raid_dic=new JsonDic<JDraid>(_data);
+		}
+		return _m_raid_dic;
+	}
+}
+

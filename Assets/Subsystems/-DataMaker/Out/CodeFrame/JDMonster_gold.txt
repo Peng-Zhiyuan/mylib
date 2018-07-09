@@ -1,0 +1,34 @@
+﻿JsonDic<JDMonster_gold> _m_Monster_gold_dic;
+public void Monster_gold_Pre()
+{
+	if(_m_Monster_gold_dic==null)
+	{
+		if(m_Monster_gold_dic.Count>0)return;
+	}
+}
+
+public List<JDMonster_gold> m_Monster_gold_list
+{
+	get
+	{
+		return m_Monster_gold_dic.DataList;
+	}
+}
+
+public JsonDic<JDMonster_gold> m_Monster_gold_dic
+{
+	get
+	{
+		if(_m_Monster_gold_dic==null)
+		{
+			string _data=LoadFile("Monster_gold",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_Monster_gold_dic=new JsonDic<JDMonster_gold>(_data);
+		}
+		return _m_Monster_gold_dic;
+	}
+}
+

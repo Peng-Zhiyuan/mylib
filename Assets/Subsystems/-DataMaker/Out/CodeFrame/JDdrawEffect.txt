@@ -1,0 +1,34 @@
+﻿JsonDic<JDdrawEffect> _m_drawEffect_dic;
+public void drawEffect_Pre()
+{
+	if(_m_drawEffect_dic==null)
+	{
+		if(m_drawEffect_dic.Count>0)return;
+	}
+}
+
+public List<JDdrawEffect> m_drawEffect_list
+{
+	get
+	{
+		return m_drawEffect_dic.DataList;
+	}
+}
+
+public JsonDic<JDdrawEffect> m_drawEffect_dic
+{
+	get
+	{
+		if(_m_drawEffect_dic==null)
+		{
+			string _data=LoadFile("drawEffect",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_drawEffect_dic=new JsonDic<JDdrawEffect>(_data);
+		}
+		return _m_drawEffect_dic;
+	}
+}
+

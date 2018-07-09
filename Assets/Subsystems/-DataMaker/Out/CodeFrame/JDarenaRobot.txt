@@ -1,0 +1,34 @@
+﻿JsonDic<JDarenaRobot> _m_arenaRobot_dic;
+public void arenaRobot_Pre()
+{
+	if(_m_arenaRobot_dic==null)
+	{
+		if(m_arenaRobot_dic.Count>0)return;
+	}
+}
+
+public List<JDarenaRobot> m_arenaRobot_list
+{
+	get
+	{
+		return m_arenaRobot_dic.DataList;
+	}
+}
+
+public JsonDic<JDarenaRobot> m_arenaRobot_dic
+{
+	get
+	{
+		if(_m_arenaRobot_dic==null)
+		{
+			string _data=LoadFile("arenaRobot",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_arenaRobot_dic=new JsonDic<JDarenaRobot>(_data);
+		}
+		return _m_arenaRobot_dic;
+	}
+}
+

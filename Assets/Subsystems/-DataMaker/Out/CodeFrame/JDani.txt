@@ -1,0 +1,34 @@
+﻿JsonDic<JDani> _m_ani_dic;
+public void ani_Pre()
+{
+	if(_m_ani_dic==null)
+	{
+		if(m_ani_dic.Count>0)return;
+	}
+}
+
+public List<JDani> m_ani_list
+{
+	get
+	{
+		return m_ani_dic.DataList;
+	}
+}
+
+public JsonDic<JDani> m_ani_dic
+{
+	get
+	{
+		if(_m_ani_dic==null)
+		{
+			string _data=LoadFile("ani",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_ani_dic=new JsonDic<JDani>(_data);
+		}
+		return _m_ani_dic;
+	}
+}
+

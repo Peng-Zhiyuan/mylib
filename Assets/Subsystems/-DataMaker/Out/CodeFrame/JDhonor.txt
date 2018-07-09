@@ -1,0 +1,34 @@
+﻿JsonDic<JDhonor> _m_honor_dic;
+public void honor_Pre()
+{
+	if(_m_honor_dic==null)
+	{
+		if(m_honor_dic.Count>0)return;
+	}
+}
+
+public List<JDhonor> m_honor_list
+{
+	get
+	{
+		return m_honor_dic.DataList;
+	}
+}
+
+public JsonDic<JDhonor> m_honor_dic
+{
+	get
+	{
+		if(_m_honor_dic==null)
+		{
+			string _data=LoadFile("honor",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_honor_dic=new JsonDic<JDhonor>(_data);
+		}
+		return _m_honor_dic;
+	}
+}
+

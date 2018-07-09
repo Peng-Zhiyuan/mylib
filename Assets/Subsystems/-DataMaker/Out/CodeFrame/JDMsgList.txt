@@ -1,0 +1,34 @@
+﻿JsonDic<JDMsgList> _m_MsgList_dic;
+public void MsgList_Pre()
+{
+	if(_m_MsgList_dic==null)
+	{
+		if(m_MsgList_dic.Count>0)return;
+	}
+}
+
+public List<JDMsgList> m_MsgList_list
+{
+	get
+	{
+		return m_MsgList_dic.DataList;
+	}
+}
+
+public JsonDic<JDMsgList> m_MsgList_dic
+{
+	get
+	{
+		if(_m_MsgList_dic==null)
+		{
+			string _data=LoadFile("MsgList",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_MsgList_dic=new JsonDic<JDMsgList>(_data);
+		}
+		return _m_MsgList_dic;
+	}
+}
+

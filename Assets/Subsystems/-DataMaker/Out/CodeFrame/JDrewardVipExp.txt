@@ -1,0 +1,34 @@
+﻿JsonDic<JDrewardVipExp> _m_rewardVipExp_dic;
+public void rewardVipExp_Pre()
+{
+	if(_m_rewardVipExp_dic==null)
+	{
+		if(m_rewardVipExp_dic.Count>0)return;
+	}
+}
+
+public List<JDrewardVipExp> m_rewardVipExp_list
+{
+	get
+	{
+		return m_rewardVipExp_dic.DataList;
+	}
+}
+
+public JsonDic<JDrewardVipExp> m_rewardVipExp_dic
+{
+	get
+	{
+		if(_m_rewardVipExp_dic==null)
+		{
+			string _data=LoadFile("rewardVipExp",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_rewardVipExp_dic=new JsonDic<JDrewardVipExp>(_data);
+		}
+		return _m_rewardVipExp_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDrewardDPay> _m_rewardDPay_dic;
+public void rewardDPay_Pre()
+{
+	if(_m_rewardDPay_dic==null)
+	{
+		if(m_rewardDPay_dic.Count>0)return;
+	}
+}
+
+public List<JDrewardDPay> m_rewardDPay_list
+{
+	get
+	{
+		return m_rewardDPay_dic.DataList;
+	}
+}
+
+public JsonDic<JDrewardDPay> m_rewardDPay_dic
+{
+	get
+	{
+		if(_m_rewardDPay_dic==null)
+		{
+			string _data=LoadFile("rewardDPay",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_rewardDPay_dic=new JsonDic<JDrewardDPay>(_data);
+		}
+		return _m_rewardDPay_dic;
+	}
+}
+

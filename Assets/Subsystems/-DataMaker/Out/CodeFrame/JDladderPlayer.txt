@@ -1,0 +1,34 @@
+﻿JsonDic<JDladderPlayer> _m_ladderPlayer_dic;
+public void ladderPlayer_Pre()
+{
+	if(_m_ladderPlayer_dic==null)
+	{
+		if(m_ladderPlayer_dic.Count>0)return;
+	}
+}
+
+public List<JDladderPlayer> m_ladderPlayer_list
+{
+	get
+	{
+		return m_ladderPlayer_dic.DataList;
+	}
+}
+
+public JsonDic<JDladderPlayer> m_ladderPlayer_dic
+{
+	get
+	{
+		if(_m_ladderPlayer_dic==null)
+		{
+			string _data=LoadFile("ladderPlayer",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_ladderPlayer_dic=new JsonDic<JDladderPlayer>(_data);
+		}
+		return _m_ladderPlayer_dic;
+	}
+}
+

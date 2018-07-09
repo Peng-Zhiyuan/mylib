@@ -1,0 +1,34 @@
+﻿JsonDic<JDclubDuty> _m_clubDuty_dic;
+public void clubDuty_Pre()
+{
+	if(_m_clubDuty_dic==null)
+	{
+		if(m_clubDuty_dic.Count>0)return;
+	}
+}
+
+public List<JDclubDuty> m_clubDuty_list
+{
+	get
+	{
+		return m_clubDuty_dic.DataList;
+	}
+}
+
+public JsonDic<JDclubDuty> m_clubDuty_dic
+{
+	get
+	{
+		if(_m_clubDuty_dic==null)
+		{
+			string _data=LoadFile("clubDuty",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_clubDuty_dic=new JsonDic<JDclubDuty>(_data);
+		}
+		return _m_clubDuty_dic;
+	}
+}
+

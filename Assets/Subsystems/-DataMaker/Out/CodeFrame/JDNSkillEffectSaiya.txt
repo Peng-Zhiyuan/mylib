@@ -1,0 +1,34 @@
+﻿JsonDic<JDNSkillEffectSaiya> _m_NSkillEffectSaiya_dic;
+public void NSkillEffectSaiya_Pre()
+{
+	if(_m_NSkillEffectSaiya_dic==null)
+	{
+		if(m_NSkillEffectSaiya_dic.Count>0)return;
+	}
+}
+
+public List<JDNSkillEffectSaiya> m_NSkillEffectSaiya_list
+{
+	get
+	{
+		return m_NSkillEffectSaiya_dic.DataList;
+	}
+}
+
+public JsonDic<JDNSkillEffectSaiya> m_NSkillEffectSaiya_dic
+{
+	get
+	{
+		if(_m_NSkillEffectSaiya_dic==null)
+		{
+			string _data=LoadFile("NSkillEffectSaiya",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NSkillEffectSaiya_dic=new JsonDic<JDNSkillEffectSaiya>(_data);
+		}
+		return _m_NSkillEffectSaiya_dic;
+	}
+}
+

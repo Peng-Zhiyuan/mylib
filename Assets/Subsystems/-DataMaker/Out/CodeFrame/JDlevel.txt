@@ -1,0 +1,34 @@
+﻿JsonDic<JDlevel> _m_level_dic;
+public void level_Pre()
+{
+	if(_m_level_dic==null)
+	{
+		if(m_level_dic.Count>0)return;
+	}
+}
+
+public List<JDlevel> m_level_list
+{
+	get
+	{
+		return m_level_dic.DataList;
+	}
+}
+
+public JsonDic<JDlevel> m_level_dic
+{
+	get
+	{
+		if(_m_level_dic==null)
+		{
+			string _data=LoadFile("level",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_level_dic=new JsonDic<JDlevel>(_data);
+		}
+		return _m_level_dic;
+	}
+}
+

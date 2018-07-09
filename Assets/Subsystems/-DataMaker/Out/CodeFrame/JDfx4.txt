@@ -1,0 +1,34 @@
+﻿JsonDic<JDfx4> _m_fx4_dic;
+public void fx4_Pre()
+{
+	if(_m_fx4_dic==null)
+	{
+		if(m_fx4_dic.Count>0)return;
+	}
+}
+
+public List<JDfx4> m_fx4_list
+{
+	get
+	{
+		return m_fx4_dic.DataList;
+	}
+}
+
+public JsonDic<JDfx4> m_fx4_dic
+{
+	get
+	{
+		if(_m_fx4_dic==null)
+		{
+			string _data=LoadFile("fx4",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_fx4_dic=new JsonDic<JDfx4>(_data);
+		}
+		return _m_fx4_dic;
+	}
+}
+

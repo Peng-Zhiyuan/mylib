@@ -1,0 +1,34 @@
+﻿JsonDic<JDstageLots> _m_stageLots_dic;
+public void stageLots_Pre()
+{
+	if(_m_stageLots_dic==null)
+	{
+		if(m_stageLots_dic.Count>0)return;
+	}
+}
+
+public List<JDstageLots> m_stageLots_list
+{
+	get
+	{
+		return m_stageLots_dic.DataList;
+	}
+}
+
+public JsonDic<JDstageLots> m_stageLots_dic
+{
+	get
+	{
+		if(_m_stageLots_dic==null)
+		{
+			string _data=LoadFile("stageLots",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_stageLots_dic=new JsonDic<JDstageLots>(_data);
+		}
+		return _m_stageLots_dic;
+	}
+}
+

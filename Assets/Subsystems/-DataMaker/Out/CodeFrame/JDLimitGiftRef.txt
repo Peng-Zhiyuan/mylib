@@ -1,0 +1,34 @@
+﻿JsonDic<JDLimitGiftRef> _m_LimitGiftRef_dic;
+public void LimitGiftRef_Pre()
+{
+	if(_m_LimitGiftRef_dic==null)
+	{
+		if(m_LimitGiftRef_dic.Count>0)return;
+	}
+}
+
+public List<JDLimitGiftRef> m_LimitGiftRef_list
+{
+	get
+	{
+		return m_LimitGiftRef_dic.DataList;
+	}
+}
+
+public JsonDic<JDLimitGiftRef> m_LimitGiftRef_dic
+{
+	get
+	{
+		if(_m_LimitGiftRef_dic==null)
+		{
+			string _data=LoadFile("LimitGiftRef",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_LimitGiftRef_dic=new JsonDic<JDLimitGiftRef>(_data);
+		}
+		return _m_LimitGiftRef_dic;
+	}
+}
+

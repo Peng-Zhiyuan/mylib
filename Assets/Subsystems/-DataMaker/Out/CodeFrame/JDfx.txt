@@ -1,0 +1,34 @@
+﻿JsonDic<JDfx> _m_fx_dic;
+public void fx_Pre()
+{
+	if(_m_fx_dic==null)
+	{
+		if(m_fx_dic.Count>0)return;
+	}
+}
+
+public List<JDfx> m_fx_list
+{
+	get
+	{
+		return m_fx_dic.DataList;
+	}
+}
+
+public JsonDic<JDfx> m_fx_dic
+{
+	get
+	{
+		if(_m_fx_dic==null)
+		{
+			string _data=LoadFile("fx",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_fx_dic=new JsonDic<JDfx>(_data);
+		}
+		return _m_fx_dic;
+	}
+}
+

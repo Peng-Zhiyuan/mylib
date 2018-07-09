@@ -1,0 +1,34 @@
+﻿JsonDic<JDNSkillEffectGround> _m_NSkillEffectGround_dic;
+public void NSkillEffectGround_Pre()
+{
+	if(_m_NSkillEffectGround_dic==null)
+	{
+		if(m_NSkillEffectGround_dic.Count>0)return;
+	}
+}
+
+public List<JDNSkillEffectGround> m_NSkillEffectGround_list
+{
+	get
+	{
+		return m_NSkillEffectGround_dic.DataList;
+	}
+}
+
+public JsonDic<JDNSkillEffectGround> m_NSkillEffectGround_dic
+{
+	get
+	{
+		if(_m_NSkillEffectGround_dic==null)
+		{
+			string _data=LoadFile("NSkillEffectGround",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_NSkillEffectGround_dic=new JsonDic<JDNSkillEffectGround>(_data);
+		}
+		return _m_NSkillEffectGround_dic;
+	}
+}
+

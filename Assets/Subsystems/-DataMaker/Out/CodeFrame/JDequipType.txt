@@ -1,0 +1,34 @@
+﻿JsonDic<JDequipType> _m_equipType_dic;
+public void equipType_Pre()
+{
+	if(_m_equipType_dic==null)
+	{
+		if(m_equipType_dic.Count>0)return;
+	}
+}
+
+public List<JDequipType> m_equipType_list
+{
+	get
+	{
+		return m_equipType_dic.DataList;
+	}
+}
+
+public JsonDic<JDequipType> m_equipType_dic
+{
+	get
+	{
+		if(_m_equipType_dic==null)
+		{
+			string _data=LoadFile("equipType",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_equipType_dic=new JsonDic<JDequipType>(_data);
+		}
+		return _m_equipType_dic;
+	}
+}
+

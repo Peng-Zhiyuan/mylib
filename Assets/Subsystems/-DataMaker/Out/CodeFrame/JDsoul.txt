@@ -1,0 +1,34 @@
+﻿JsonDic<JDsoul> _m_soul_dic;
+public void soul_Pre()
+{
+	if(_m_soul_dic==null)
+	{
+		if(m_soul_dic.Count>0)return;
+	}
+}
+
+public List<JDsoul> m_soul_list
+{
+	get
+	{
+		return m_soul_dic.DataList;
+	}
+}
+
+public JsonDic<JDsoul> m_soul_dic
+{
+	get
+	{
+		if(_m_soul_dic==null)
+		{
+			string _data=LoadFile("soul",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_soul_dic=new JsonDic<JDsoul>(_data);
+		}
+		return _m_soul_dic;
+	}
+}
+

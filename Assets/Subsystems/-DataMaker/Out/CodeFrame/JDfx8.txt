@@ -1,0 +1,34 @@
+﻿JsonDic<JDfx8> _m_fx8_dic;
+public void fx8_Pre()
+{
+	if(_m_fx8_dic==null)
+	{
+		if(m_fx8_dic.Count>0)return;
+	}
+}
+
+public List<JDfx8> m_fx8_list
+{
+	get
+	{
+		return m_fx8_dic.DataList;
+	}
+}
+
+public JsonDic<JDfx8> m_fx8_dic
+{
+	get
+	{
+		if(_m_fx8_dic==null)
+		{
+			string _data=LoadFile("fx8",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_fx8_dic=new JsonDic<JDfx8>(_data);
+		}
+		return _m_fx8_dic;
+	}
+}
+

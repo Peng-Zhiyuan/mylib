@@ -1,0 +1,34 @@
+﻿JsonDic<JDconfig> _m_config_dic;
+public void config_Pre()
+{
+	if(_m_config_dic==null)
+	{
+		if(m_config_dic.Count>0)return;
+	}
+}
+
+public List<JDconfig> m_config_list
+{
+	get
+	{
+		return m_config_dic.DataList;
+	}
+}
+
+public JsonDic<JDconfig> m_config_dic
+{
+	get
+	{
+		if(_m_config_dic==null)
+		{
+			string _data=LoadFile("config",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_config_dic=new JsonDic<JDconfig>(_data);
+		}
+		return _m_config_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDbossLoot> _m_bossLoot_dic;
+public void bossLoot_Pre()
+{
+	if(_m_bossLoot_dic==null)
+	{
+		if(m_bossLoot_dic.Count>0)return;
+	}
+}
+
+public List<JDbossLoot> m_bossLoot_list
+{
+	get
+	{
+		return m_bossLoot_dic.DataList;
+	}
+}
+
+public JsonDic<JDbossLoot> m_bossLoot_dic
+{
+	get
+	{
+		if(_m_bossLoot_dic==null)
+		{
+			string _data=LoadFile("bossLoot",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_bossLoot_dic=new JsonDic<JDbossLoot>(_data);
+		}
+		return _m_bossLoot_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDgoblin> _m_goblin_dic;
+public void goblin_Pre()
+{
+	if(_m_goblin_dic==null)
+	{
+		if(m_goblin_dic.Count>0)return;
+	}
+}
+
+public List<JDgoblin> m_goblin_list
+{
+	get
+	{
+		return m_goblin_dic.DataList;
+	}
+}
+
+public JsonDic<JDgoblin> m_goblin_dic
+{
+	get
+	{
+		if(_m_goblin_dic==null)
+		{
+			string _data=LoadFile("goblin",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_goblin_dic=new JsonDic<JDgoblin>(_data);
+		}
+		return _m_goblin_dic;
+	}
+}
+

@@ -1,0 +1,34 @@
+﻿JsonDic<JDarenaBase1> _m_arenaBase1_dic;
+public void arenaBase1_Pre()
+{
+	if(_m_arenaBase1_dic==null)
+	{
+		if(m_arenaBase1_dic.Count>0)return;
+	}
+}
+
+public List<JDarenaBase1> m_arenaBase1_list
+{
+	get
+	{
+		return m_arenaBase1_dic.DataList;
+	}
+}
+
+public JsonDic<JDarenaBase1> m_arenaBase1_dic
+{
+	get
+	{
+		if(_m_arenaBase1_dic==null)
+		{
+			string _data=LoadFile("arenaBase1",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_arenaBase1_dic=new JsonDic<JDarenaBase1>(_data);
+		}
+		return _m_arenaBase1_dic;
+	}
+}
+

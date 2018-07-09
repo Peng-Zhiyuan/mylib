@@ -1,0 +1,34 @@
+﻿JsonDic<JDarmorPart> _m_armorPart_dic;
+public void armorPart_Pre()
+{
+	if(_m_armorPart_dic==null)
+	{
+		if(m_armorPart_dic.Count>0)return;
+	}
+}
+
+public List<JDarmorPart> m_armorPart_list
+{
+	get
+	{
+		return m_armorPart_dic.DataList;
+	}
+}
+
+public JsonDic<JDarmorPart> m_armorPart_dic
+{
+	get
+	{
+		if(_m_armorPart_dic==null)
+		{
+			string _data=LoadFile("armorPart",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_armorPart_dic=new JsonDic<JDarmorPart>(_data);
+		}
+		return _m_armorPart_dic;
+	}
+}
+

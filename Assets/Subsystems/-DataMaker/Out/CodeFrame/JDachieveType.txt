@@ -1,0 +1,34 @@
+﻿JsonDic<JDachieveType> _m_achieveType_dic;
+public void achieveType_Pre()
+{
+	if(_m_achieveType_dic==null)
+	{
+		if(m_achieveType_dic.Count>0)return;
+	}
+}
+
+public List<JDachieveType> m_achieveType_list
+{
+	get
+	{
+		return m_achieveType_dic.DataList;
+	}
+}
+
+public JsonDic<JDachieveType> m_achieveType_dic
+{
+	get
+	{
+		if(_m_achieveType_dic==null)
+		{
+			string _data=LoadFile("achieveType",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_achieveType_dic=new JsonDic<JDachieveType>(_data);
+		}
+		return _m_achieveType_dic;
+	}
+}
+

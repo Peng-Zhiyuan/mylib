@@ -1,0 +1,34 @@
+﻿JsonDic<JDgem> _m_gem_dic;
+public void gem_Pre()
+{
+	if(_m_gem_dic==null)
+	{
+		if(m_gem_dic.Count>0)return;
+	}
+}
+
+public List<JDgem> m_gem_list
+{
+	get
+	{
+		return m_gem_dic.DataList;
+	}
+}
+
+public JsonDic<JDgem> m_gem_dic
+{
+	get
+	{
+		if(_m_gem_dic==null)
+		{
+			string _data=LoadFile("gem",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_gem_dic=new JsonDic<JDgem>(_data);
+		}
+		return _m_gem_dic;
+	}
+}
+

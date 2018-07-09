@@ -1,0 +1,34 @@
+﻿JsonDic<JDfx7> _m_fx7_dic;
+public void fx7_Pre()
+{
+	if(_m_fx7_dic==null)
+	{
+		if(m_fx7_dic.Count>0)return;
+	}
+}
+
+public List<JDfx7> m_fx7_list
+{
+	get
+	{
+		return m_fx7_dic.DataList;
+	}
+}
+
+public JsonDic<JDfx7> m_fx7_dic
+{
+	get
+	{
+		if(_m_fx7_dic==null)
+		{
+			string _data=LoadFile("fx7",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_fx7_dic=new JsonDic<JDfx7>(_data);
+		}
+		return _m_fx7_dic;
+	}
+}
+

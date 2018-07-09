@@ -1,0 +1,34 @@
+﻿JsonDic<JDDrawGroupView> _m_DrawGroupView_dic;
+public void DrawGroupView_Pre()
+{
+	if(_m_DrawGroupView_dic==null)
+	{
+		if(m_DrawGroupView_dic.Count>0)return;
+	}
+}
+
+public List<JDDrawGroupView> m_DrawGroupView_list
+{
+	get
+	{
+		return m_DrawGroupView_dic.DataList;
+	}
+}
+
+public JsonDic<JDDrawGroupView> m_DrawGroupView_dic
+{
+	get
+	{
+		if(_m_DrawGroupView_dic==null)
+		{
+			string _data=LoadFile("DrawGroupView",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_DrawGroupView_dic=new JsonDic<JDDrawGroupView>(_data);
+		}
+		return _m_DrawGroupView_dic;
+	}
+}
+

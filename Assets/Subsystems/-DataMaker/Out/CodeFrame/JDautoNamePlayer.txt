@@ -1,0 +1,34 @@
+﻿JsonDic<JDautoNamePlayer> _m_autoNamePlayer_dic;
+public void autoNamePlayer_Pre()
+{
+	if(_m_autoNamePlayer_dic==null)
+	{
+		if(m_autoNamePlayer_dic.Count>0)return;
+	}
+}
+
+public List<JDautoNamePlayer> m_autoNamePlayer_list
+{
+	get
+	{
+		return m_autoNamePlayer_dic.DataList;
+	}
+}
+
+public JsonDic<JDautoNamePlayer> m_autoNamePlayer_dic
+{
+	get
+	{
+		if(_m_autoNamePlayer_dic==null)
+		{
+			string _data=LoadFile("autoNamePlayer",true);
+			if(string.IsNullOrEmpty(_data))
+			{
+				return null;
+			}
+			_m_autoNamePlayer_dic=new JsonDic<JDautoNamePlayer>(_data);
+		}
+		return _m_autoNamePlayer_dic;
+	}
+}
+
