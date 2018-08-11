@@ -1,52 +1,74 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Edroity;
+﻿using UnityEngine;
+using System.Collections;
 using CustomLitJson;
-using System;
+using UnityEngine.Assertions;
 
-public static class GameManifestManager
-{
-    private static JsonData manifest; 
-    private static string EDITOR_MANIFEST_RESOURCES_PATH = "Config/game-manifest";
-
-    private static string GetRawString()
+public static class GameManifestManager {
+    
+    public static JsonData _manifest;
+    public static JsonData _coreManifest;
+    public static JsonData Manifest
     {
-        if (Application.isEditor)
+        get
         {
-            return GetRowStringFromEditor();
-        }
-        else
-        {
-            return NativeBridge.SyncCall("GameManifestBridge", "GetRawString");
-        }
-    }
-
-    private static string GetRowStringFromEditor()
-    {
-        var textAsset = Resources.Load<TextAsset>(EDITOR_MANIFEST_RESOURCES_PATH);
-        if (textAsset == null)
-        {
-            Debug.LogException(new Exception("Resources : " + EDITOR_MANIFEST_RESOURCES_PATH + " not found"));
-        }
-        return textAsset.text;
-    }
-
-    public static string Get(string key, string defaultValue)
-    {
-        if(manifest == null)
-        {
-            var raw = GetRawString();
-            var jd = JsonMapper.Instance.ToObject(raw);
-            if (jd.IsObject)
+            if (_manifest == null)
             {
-                manifest = jd;
+                string jsonString = null;
+                jsonString = NativeBridge.SyncCall("NativeGameManifestManager", "GetManifest");
+
+                Debug.Log("[GameManifestManager] manifest: " + jsonString);
+                if(!string.IsNullOrEmpty(jsonString))
+                {
+                    _manifest = JsonMapper.Instance.ToObject(jsonString);
+                }
+                else
+                {
+                    _manifest = new JsonData();
+                }
             }
-            else
-            {
-                throw new Exception("game-manifest is not a valid json!, raw: " + raw);
-            }
+            return _manifest;
         }
-        return manifest.TryGet<string>(key, defaultValue);
     }
+
+    public static JsonData CoreManifest
+    {
+        get
+        {
+            if (_coreManifest == null)
+            {
+                var textAsset = Resources.Load<TextAsset>("game-manifest/game-manifest");
+                var jsonString = textAsset.text;
+                Debug.Log("[GameManifestManager] core-manifest: " + jsonString);
+                if (!string.IsNullOrEmpty(jsonString))
+                {
+                    _coreManifest = JsonMapper.Instance.ToObject(jsonString);
+                }
+                else
+                {
+                    _coreManifest = new JsonData();
+                }
+            }
+            return _coreManifest;
+        }
+    }
+
+    public static string Get(string key, string defaultValue = "")
+    {
+        Assert.IsTrue(Application.isPlaying, "GameManifestManager can't running on editor script, use GameManifestEditor instead.");
+
+        var conf = Manifest;
+        if (((IDictionary)conf).Contains(key))
+        {
+            return conf[key].ToString();
+        }
+
+        var coreConf = CoreManifest;
+        if (((IDictionary)coreConf).Contains(key))
+        {
+            return coreConf[key].ToString();
+        }
+
+        return defaultValue;
+    }
+
 }

@@ -6,8 +6,7 @@ using UnityEngine;
 // UI 最小逻辑单元
 public class View : MonoBehaviour
 {
-	[ReadOnly]
-	public string param;
+	public object param;
 
     private bool _active;
     public bool Active
@@ -42,14 +41,25 @@ public class View : MonoBehaviour
         set
         {
             _depth = value;
-            var z = -_depth * 10;
 
-            
- 
-  
-            var p = this.transform.localPosition;
-            p.z = z;
-            this.transform.localPosition = p; 
+            // change z
+            //var z = -_depth * 10;
+            //var p = this.transform.localPosition;
+            //p.z = z;
+            //this.transform.localPosition = p; 
+        }
+    }
+
+    private RectTransform _rectTransform;
+    public RectTransform rectTransform
+    {
+        get
+        {
+            if(_rectTransform == null)
+            {
+                this._rectTransform = this.GetComponent<RectTransform>();
+            }
+            return _rectTransform;
         }
     }
 
@@ -61,4 +71,6 @@ public class View : MonoBehaviour
     protected virtual void OnActive() {}
 
     protected virtual void OnInactive() {}
+
+    public virtual void OnParamChanged() {}
 }

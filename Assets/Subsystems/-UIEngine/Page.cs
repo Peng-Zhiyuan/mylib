@@ -18,18 +18,6 @@ public class Page : View
 
     public virtual void OnPop(){}
 
-    private RectTransform _rectTransform;
-    public RectTransform rectTransform
-    {
-        get
-        {
-            if(_rectTransform == null)
-            {
-                this._rectTransform = this.GetComponent<RectTransform>();
-            }
-            return _rectTransform;
-        }
-    }
 
 }
 

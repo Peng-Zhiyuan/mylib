@@ -15,6 +15,7 @@ public static class CoroutineManager
 			{
 				var go = new GameObject("CoroutineProvider");
 				_provider = go.AddComponent<CoroutineProvider>();
+                GameObject.DontDestroyOnLoad(go);
 			}
 			return _provider;
 		}

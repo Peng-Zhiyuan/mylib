@@ -28,5 +28,9 @@ public class PagePool  {
         }
         return null;
     }
-    	
+
+    public void Destroy(string name)
+    {
+        dic[name] = null;
+    }	
 }

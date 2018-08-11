@@ -18,11 +18,12 @@ public static class AudioManager
         }
     }
 
-	public static void Init()
+	static AudioManager()
 	{
 		root = new GameObject("AudioServiceRoot");
         root.AddComponent<AudioListener>();
         CoroutineManager.Create(UpdateAsyn());
+        GameObject.DontDestroyOnLoad(root);
 	}
 
 
@@ -71,13 +72,15 @@ public static class AudioManager
             }
         }
 	}
-	public static void PlaySe(string se)
+	public static void PlaySe(string se, float volume = 1)
 	{
-		
+		var clip = Resources.Load<AudioClip>("audio-manager/se/" + se);
+        Play(clip, 1.0f, Parameter.FrameOnce);
 	}
-	public static void PlayBgm(string bgm)
+	public static void PlayBgm(string bgm, float volume = 1)
 	{
-
+		var clip = Resources.Load<AudioClip>("audio-manager/bgm/" + bgm);
+        PlayBgm(clip, 1.0f);
 	}
 	public static void PlayBgm(AudioClip clip, float volume = 1)
 	{
@@ -162,9 +165,24 @@ public static class AudioManager
 
     public enum Parameter
     {
+        /// <summary>
+        /// 允许多实例播放
+        /// </summary>
         MutiTask,
+
+        /// <summary>
+        /// 只允许单一实例播放，如果正在播放时再次请求播放，请求会被无视
+        /// </summary>
         SingleTaskEarly,
+
+        /// <summary>
+        /// 只允许单一实例播放，如果正在播放时再次请求播放，会先停止已播放的实例
+        /// </summary>
         SingleTaskLater,
+
+        /// <summary>
+        /// 每一帧只允许一个实例播放
+        /// </summary>
         FrameOnce,
     }
 

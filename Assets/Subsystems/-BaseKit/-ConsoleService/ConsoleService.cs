@@ -41,7 +41,7 @@ public class ConsoleService
     public Type[] TYPE_LIST = new Type[]{ typeof(TestCommandProvider) };
 
 
-    public void Init()
+    private void Init()
     {
         //var providerTypeList = ReflectionHelper.GetSubClasses<CommandProvider>();
         var providerTypeList = TYPE_LIST;

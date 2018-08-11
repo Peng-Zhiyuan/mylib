@@ -15,11 +15,19 @@ public static class PageStack
         }
         page.Depth = stack.Count * 10;
         page.transform.localScale = Vector3.one;
+        var from = Peek();
         stack.Push(page);
         page.Active = true;
         RecaculateActive();
         page.OnPush();
         page.OnNavigatedTo();
+
+        // set sibling position
+        if(from != null)
+        {
+            var index = from.transform.GetSiblingIndex();
+            page.transform.SetSiblingIndex(index + 1);
+        }
        // page.ignoreFrameUpdate = true;      // TODO: 做什么的？
     }
 

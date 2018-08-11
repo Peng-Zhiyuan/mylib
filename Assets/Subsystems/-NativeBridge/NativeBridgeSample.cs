@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Edroity;
 
 public class NativeBridgeSample : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        NativeBridge.Init();
-       
+
         NativeBridge.RegisterBrigeClass(typeof(TestBridgeClass));
         NativeBridge.SendNotify("TestBridgeClass", "OnTestNotify");
         NativeBridge.InvokeCall("TestBridgeClass", "TestCall", null, ret =>

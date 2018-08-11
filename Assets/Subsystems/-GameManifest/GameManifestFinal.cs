@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public static class GameManifestFinal  {
+public static class GameManifestFinal 
+ {
 
     public static string Get(string key, string _default = "")
     {
@@ -22,5 +23,5 @@ public static class GameManifestFinal  {
         #endif
     }
 
-}
 
+}

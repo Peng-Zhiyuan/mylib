@@ -27,6 +27,13 @@ public static class AdmissionManager
 		UpdateManager.Add(proxy);
 	}
 
+	public static void Remove()
+	{
+		current = null;
+		busing = false;
+		UpdateManager.Remove(proxy);
+	}
+
 	private static void OnFinished()
 	{
 		current = null;
@@ -37,6 +44,11 @@ public static class AdmissionManager
 	{
 		public void Update()
 		{
+			if(current == null)
+			{
+				UpdateManager.Remove(this);
+				return;
+			}
 			current.Update();
 			if(current.finished)
 			{

@@ -14,9 +14,9 @@ namespace ElementSystem
 
         public static void GenerateCodeForTree(GameObject tree)
         {
-            bool isElement = tree.GetComponent<Element>() != null;
-            bool isPage = tree.GetComponent<Page>() != null;
-            bool isContrl = tree.GetComponent<Control>() != null;
+
+            bool mainComponent = tree.GetComponent(tree.name);
+            string superClassName = mainComponent.GetType().BaseType.Name;
             var sb = new StringBuilder();
             string className = "";
             var parentDesigner = tree.transform.parent.GetComponentInParent<ElementDesigner>();
@@ -27,23 +27,6 @@ namespace ElementSystem
             else
             {
                 className = tree.name;
-            }
-            var superClassName = "";
-            if (isElement)
-            {
-                superClassName = "Element";
-            }
-            else if (isPage)
-            {
-                superClassName = "Page";
-            }
-            else if (isContrl)
-            {
-                superClassName = "Control";
-            }
-            else
-            {
-                throw new Exception("is not Element nor Page nor Control");
             }
 
 
@@ -83,12 +66,12 @@ namespace ElementSystem
                 var typeName = "";
                 var compponentSerachTypeList = new Type[]
                 {
-                    typeof(Element),
-                    typeof(ElementScrollView),
-                    typeof(View),
-                    typeof(UIWidget),
-                    typeof(UIRect),
-                    typeof(UIWidgetContainer),
+                    // typeof(Element),
+                    // typeof(ElementScrollView),
+                    // typeof(View),
+                    // typeof(UIWidget),
+                    // typeof(UIRect),
+                    // typeof(UIWidgetContainer),
                     //typeof(ScrollViewHelper),
                     //typeof(UIPoolList),
                     typeof(MonoBehaviour),

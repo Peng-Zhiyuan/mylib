@@ -6,9 +6,13 @@ public static class UIEngine
 {
     static PagePool pagePool = new PagePool();
     static GameObject root; 
+    static GameObject low;
+    static GameObject mid;
+    static GameObject height;
+    static GameObject top;
 	static Func<UIResourceType, string, GameObject> externalLoader;
 
-    static Dictionary<string, Control> createdControl = new Dictionary<string, Control>();
+    static Dictionary<string, Floating> createdControl = new Dictionary<string, Floating>();
 
     public static void Init()
     {
@@ -18,6 +22,10 @@ public static class UIEngine
         {
             design.gameObject.SetActive(false);
         }
+        low = root.transform.Find("Low").gameObject;
+        mid = root.transform.Find("Mid").gameObject;
+        height = root.transform.Find("Height").gameObject;
+        top = root.transform.Find("Top").gameObject;
     }
 
     public static Canvas Canvas
@@ -28,10 +36,15 @@ public static class UIEngine
         }
     }
 
-	public static T Navigate<T>(string param = null, Admission admission = null) where T : Page
+    public static void CleanAdmission()
+    {
+        AdmissionManager.Remove();
+    }
+
+	public static T Forward<T>(object param = null, Admission admission = null) where T : Page
     {
         var name = typeof(T).Name;
-		return Navigate(name, param, admission) as T;
+		return Forward(name, param, admission) as T;
     }
 
     private static Page TakeOrCreatePage(string pageName)
@@ -48,14 +61,28 @@ public static class UIEngine
             var go_page = GameObject.Instantiate(prefab);
             page = go_page.GetComponent<Page>();
             page.name = prefab.name;
-            page.transform.parent = root.transform;
+            page.transform.parent = mid.transform;
+            page.rectTransform.anchorMax = new Vector2(0, 0);
+            page.rectTransform.anchorMax = new Vector2(1, 1);
+
+            page.transform.localScale = Vector2.one;
+            page.rectTransform.offsetMin = Vector2.zero;
+            page.rectTransform.offsetMax = Vector2.zero;
             //page.transform.localPosition = Vector2.zero;
             //page.rectTransform.parent = root.GetComponent<RectTransform>();
-            page.rectTransform.sizeDelta = Vector2.zero;
-            page.rectTransform.localPosition = Vector2.zero;
+            // page.rectTransform.sizeDelta = Vector2.zero;
+            // page.rectTransform.localPosition = Vector2.zero;
             Debug.Log("(new Instance)");
             page.OnCreate();
         }
+        else
+        {
+            page.transform.localScale = Vector2.one;
+            page.rectTransform.offsetMin = Vector2.zero;
+            page.rectTransform.offsetMax = Vector2.zero;
+        }
+
+
         return page;
     }
 
@@ -83,7 +110,7 @@ public static class UIEngine
         return page;
     }
 
-    public static Page Navigate(string pageName, string param = null, Admission admision = null)
+    public static Page Forward(string pageName, object param = null, Admission admision = null)
 	{
         if(AdmissionManager.busing)
         {
@@ -98,6 +125,7 @@ public static class UIEngine
         var fromPage = PageStack.Peek();
         var page = TakeOrCreatePage(pageName);
         page.param = param;
+        page.OnParamChanged();
         PageStack.Push(page);
         RepositionMask();
         if(admision != null)
@@ -107,6 +135,24 @@ public static class UIEngine
         return page;
 	}
 
+
+    public static void BackTo<T>() where T : Page
+    {
+        if(AdmissionManager.busing)
+        {
+            return;
+        }
+        var top = Top;
+        while(typeof(T) != top.GetType())
+        {
+            UIEngine.Back();
+            top = Top;
+            if(top == null)
+            {
+                break;
+            }
+        }
+    }
 
     public static void Back(object result = null, Admission admision = null)
 	{
@@ -160,11 +206,11 @@ public static class UIEngine
     /// </summary>
     /// <param name="name"></param>
     /// <returns></returns>
-	public static Control ShowControl(string name, string param=null, int depth = UIDepth.Middle)
+	public static Floating ShowFlaoting(string name, string param = null, int depth = UIDepth.High)
     {
         Debug.Log("Show Control: " + name);
 
-        Control control = null;
+        Floating control = null;
         createdControl.TryGetValue(name, out control);
         if(control == null)
         {
@@ -176,42 +222,66 @@ public static class UIEngine
                 return null;
             }
 
-            var go = CreateChildKeepLocalProperties(root.transform, prefab);
-            control = go.GetComponent<Control>();
+            var root = GetRootFromDepth(depth);
+            var go = GameObject.Instantiate(prefab);
+            control = go.GetComponent<Floating>();
             control.name = prefab.name;
-			control.param=param;
+			control.transform.parent = root.transform;
+            control.transform.localScale = Vector2.one;
+            control.rectTransform.anchorMin = Vector2.zero;
+            control.rectTransform.anchorMax = Vector2.one;
+            control.rectTransform.offsetMin = Vector2.zero;
+            control.rectTransform.offsetMax = Vector2.zero;
+            
             control.OnCreate();
             createdControl[name] = control;
         }
-		else control.param=param;
+		control.param = param;
+        control.OnParamChanged();
         control.Active = true;
         control.Depth = depth;
         return control;
     }
 
-    public static Control GetControl<T>()
+    public static GameObject GetRootFromDepth(int depth)
+    {
+        switch(depth)
+        {
+            case UIDepth.High:
+                return height;
+            case UIDepth.Middle:
+                return mid;
+            case UIDepth.Low:
+                return low;
+            case UIDepth.Top:
+                return top;
+        }
+        return mid;
+    }
+
+    public static Floating GetControl<T>()
     {
         var name = typeof(T).ToString();
         return GetControl(name);
     }
 
-    public static Control GetControl(string name)
+    public static Floating GetControl(string name)
     {
-        Control control = null;
+        Floating control = null;
         createdControl.TryGetValue(name, out control);
         return control;
     }
 
-    public static void HideControl<T>()
+    public static void HideFlaoting<T>()
     {
         var name = typeof(T).Name;
-        HideControl(name);
+        HideFlaoting(name);
     }
 
-    public static void HideControl(string name)
+    public static void HideFlaoting(string name)
     {
         Debug.Log("Hide Control: " + name);
-        Control control = null;
+        Floating control = null;
         createdControl.TryGetValue(name, out control);
         if (control != null)
         {
@@ -219,27 +289,14 @@ public static class UIEngine
         }
     }
 
-    private static GameObject CreateChildKeepLocalProperties(Transform parent, GameObject prefab)
-    {
-        var go = GameObject.Instantiate(prefab);
-        var localPosition = go.transform.localPosition;
-        var localRotation = go.transform.localRotation;
-        var localScale = go.transform.localScale;
-        go.transform.parent = parent.transform;
-        go.transform.localPosition = localPosition;
-        go.transform.localRotation = localRotation;
-        go.transform.localScale = localScale;
-        return go;
-    }
-
-	public static T ShowControl<T>(string param=null,int depth = UIDepth.Middle) where T : Control
+	public static T ShowFloating<T>(string param=null,int depth = UIDepth.High) where T : Floating
     {
         var name = typeof(T).Name;
-		var control = ShowControl(name,param, depth);
+		var control = ShowFlaoting(name,param, depth);
         return control as T;
     }
 
-    public static T GetComtrol<T>() where T : Control
+    public static T GetComtrol<T>() where T : Floating
     {
         var name = typeof(T).Name;
         var control = GetControl(name);
@@ -248,11 +305,7 @@ public static class UIEngine
 
     private static GameObject LoadPagePrefab(string name)
     {
-        var prefab = Resources.Load("Pages/" + name) as GameObject;
-        if(prefab == null)
-        {
-            prefab = Resources.Load("Pages/" + name + "/" + name) as GameObject;
-        }
+        var prefab = Resources.Load("ui-engine/pages/" + name) as GameObject;
 		if (prefab == null && externalLoader != null)
         {
             prefab = externalLoader.Invoke(UIResourceType.Page, name);
@@ -262,11 +315,7 @@ public static class UIEngine
 
     private static GameObject LoadControlPrefab(string name)
     {
-        var prefab = Resources.Load("Controls/" + name) as GameObject;
-        if (prefab == null)
-        {
-            prefab = Resources.Load("Controls/" + name + "/" + name) as GameObject;
-        }
+        var prefab = Resources.Load("ui-engine/floatings/" + name) as GameObject;
         if (prefab == null)
         {
 			if(externalLoader != null) externalLoader.Invoke(UIResourceType.Control, name);
@@ -279,11 +328,13 @@ public static class UIEngine
 		Page firstPage = PageStack.Peek();
 		if (firstPage.Overlay)
         {
-			Control control = ShowControl("MaskControl", null,firstPage.Depth - 1);
+			Floating control = ShowFlaoting("MaskControl", null, firstPage.Depth - 1);
+            control.transform.SetAsLastSibling();
+            control.transform.SetSiblingIndex(firstPage.transform.GetSiblingIndex());
         }
         else
         {
-            Control c = GetControl("MaskControl");
+            Floating c = GetControl("MaskControl");
             if (c != null)
             {
                 c.Active = false;
@@ -295,12 +346,19 @@ public static class UIEngine
     {
         externalLoader = loader;
     }
+
+    public static void DestroyFromPool(string name)
+    {
+        pagePool.Destroy(name);
+    }
 }
 
 public static class UIDepth
 {
-    public const int High = 2000;
-	public const int Middle = 1000;
+    public const int Low = 0;
+	public const int Middle = 100;
+    public const int High = 200;
+    public const int Top = 300;
 }
 
 public enum UIResourceType
