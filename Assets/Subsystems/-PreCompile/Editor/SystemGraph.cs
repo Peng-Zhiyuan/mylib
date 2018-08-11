@@ -9,7 +9,7 @@ using System;
 
 public static class SystemGraph  
 {
-    private static string SYSTEMS_ROOT = "Assets/[Subsystems]";
+    private static string SYSTEMS_ROOT = "Assets/Subsystems";
 
     [MenuItem("PreCompile/SystemGraph")]
     public static void ShowSystemGraph()
