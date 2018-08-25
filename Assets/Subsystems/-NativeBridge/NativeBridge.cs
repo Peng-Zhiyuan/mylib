@@ -19,15 +19,6 @@ public class NativeBridge
     private static int callCount;
     private static Dictionary<string, Action<string>> callReturnListenerDic;
     private static Dictionary<string, Type> brigeClassDic;
-    private static bool isInited;
-
-    public static bool IsInited
-    {
-        get
-        {
-            return isInited;
-        }
-    }
 
     static NativeBridge()
     {
@@ -47,7 +38,6 @@ public class NativeBridge
         root.name = "NativeBridgeReceiver";
         GameObject.DontDestroyOnLoad(root);
         root.AddComponent<NativeBridgeReceiver>();
-        isInited = true;
     }
 
     static public GateType PlatformGate
@@ -135,56 +125,56 @@ public class NativeBridge
         }
     }
 
-    public static void RegisterBrigeClass(Type type)
-    {
-        if (!NativeBridgeUtil.HasAttribute<UpstreamBridgeClassAttribute>(type))
-        {
-            Debug.LogError("[NativeBridge] type [" + type + "] is not a UpstreamBridgeClass");
-            return;
-        }
+    // public static void RegisterBrigeClass(Type type)
+    // {
+    //     if (!NativeBridgeUtil.HasAttribute<UpstreamBridgeClassAttribute>(type))
+    //     {
+    //         Debug.LogError("[NativeBridge] type [" + type + "] is not a UpstreamBridgeClass");
+    //         return;
+    //     }
 
-        brigeClassDic[type.Name] = type;
+    //     brigeClassDic[type.Name] = type;
 
-        var methodList = type.GetMethods(BindingFlags.Static | BindingFlags.Public);
+    //     var methodList = type.GetMethods(BindingFlags.Static | BindingFlags.Public);
 
-        switch (PlatformGate)
-        {
-            case GateType.Android:
-                foreach (var method in methodList)
-                {
-                    if (NativeBridgeUtil.HasAttribute(method, typeof(UpstreamCallAttribute)))
-                    {
-                        javaGateProxy.CallStatic("onRegisterCSharpMethod", new object[]{ type.Name, method.Name });
-                    }
-                }
-                break;
-            case GateType.iOS:
-                foreach (var method in methodList)
-                {
-                    if (NativeBridgeUtil.HasAttribute(method, typeof(UpstreamCallAttribute)))
-                    {
-                        OCGateProxy.gateOnRegisterCSharpMethod(type.Name, method.Name);
-                    }
-                }
-                break;
-            case  GateType.DotNet:
-                // 编辑器环境Gate不进行方法检查
-                break;
-        }
-        
-                
-    }
+    //     switch (PlatformGate)
+    //     {
+    //         case GateType.Android:
+    //             foreach (var method in methodList)
+    //             {
+    //                 if (NativeBridgeUtil.HasAttribute(method, typeof(UpstreamCallAttribute)))
+    //                 {
+    //                     javaGateProxy.CallStatic("onRegisterCSharpMethod", new object[]{ type.Name, method.Name });
+    //                 }
+    //             }
+    //             break;
+    //         case GateType.iOS:
+    //             foreach (var method in methodList)
+    //             {
+    //                 if (NativeBridgeUtil.HasAttribute(method, typeof(UpstreamCallAttribute)))
+    //                 {
+    //                     OCGateProxy.gateOnRegisterCSharpMethod(type.Name, method.Name);
+    //                 }
+    //             }
+    //             break;
+    //         case  GateType.DotNet:
+    //             // 编辑器环境Gate不进行方法检查
+    //             break;
+    //     }       
+    // }
 
     public static void OnNotify(string clazzName, string methodName, string arg)
     {
-        Type type;
-        brigeClassDic.TryGetValue(clazzName, out type);
-        if(type == null)
+        // Type type;
+        // brigeClassDic.TryGetValue(clazzName, out type);
+        String clazzPath = "UpstreamClasses." + clazzName;
+        Type clazz = typeof(NativeBridge).Assembly.GetType(clazzPath);
+        if(clazz == null)
         {
-            Debug.LogWarning("[NativeBrige] BrigeClass: " + clazzName + " not registered.");
+            Debug.LogWarning("[NativeBrige] UpstreamClass: " + clazzPath + " not registered.");
             return;
         }
-        var method = type.GetMethod(methodName, BindingFlags.Static | BindingFlags.Public);
+        var method = clazz.GetMethod(methodName, BindingFlags.Static | BindingFlags.Public);
         if (method == null)
         {
             Debug.LogWarning("[NativeBrige] BrigeNotify method: " + methodName + " not fountd int class: " + clazzName);
@@ -209,15 +199,17 @@ public class NativeBridge
 
     public static void OnUpstreamCall(string callId, string clazzName, string methodName, string arg)
     {
-        Type type;
-        brigeClassDic.TryGetValue(clazzName, out type);
-        if(type == null)
+        // Type type;
+        // brigeClassDic.TryGetValue(clazzName, out type);
+        String clazzPath = "UpstreamClasses." + clazzName;
+        Type clazz = typeof(NativeBridge).Assembly.GetType(clazzPath);
+        if(clazz == null)
         {
-            Debug.LogWarning("[NativeBrige] BrigeClass: " + clazzName + " not registered.");
+            Debug.LogWarning("[NativeBrige] UpstreamClass: " + clazzPath + " not found.");
             UpstreamCallReturn(callId, "");
             return;
         }
-        var method = type.GetMethod(methodName, BindingFlags.Static | BindingFlags.Public);
+        var method = clazz.GetMethod(methodName, BindingFlags.Static | BindingFlags.Public);
         if (method == null)
         {
             UpstreamCallReturn(callId, "");

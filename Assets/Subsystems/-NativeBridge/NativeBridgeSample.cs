@@ -1,44 +1,53 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class NativeBridgeSample : MonoBehaviour {
-
+public class NativeBridgeSample : MonoBehaviour 
+{
 	// Use this for initialization
 	void Start () {
 
-        NativeBridge.RegisterBrigeClass(typeof(TestBridgeClass));
-        NativeBridge.SendNotify("TestBridgeClass", "OnTestNotify");
-        NativeBridge.InvokeCall("TestBridgeClass", "TestCall", null, ret =>
+        NativeBridge.SendNotify("NativeClass", "NotifyHandler");
+        NativeBridge.InvokeCall("NativeClass", "CallHandler", null, ret =>
             {
                 Debug.Log("ret is: " + ret);
             });
-        NativeBridge.SendNotify("TestBridgeClass", "OnTestUpstreamNotify");
-        NativeBridge.SendNotify("TestBridgeClass", "OnTestUpstreamCall");
-        var result = NativeBridge.SyncCall("TestBridgeClass", "TestSynCall");
+        var result = NativeBridge.SyncCall("NativeClass", "SynCallHandler");
         Debug.Log("Test Syn Call result is: " + result);
-       
 	}
+	
+}
 
-    [UpstreamBridgeClass]
-    public static class TestBridgeClass
+namespace BrideClasses
+{
+    public static class NativeClass
     {
-        [UpstreamNotify]
-        public static void OnTestNotify(string args)
+        public static void NotifyHandler(string args)
         {
-            Debug.Log("onTestNotify");
+            Debug.Log("NativeMethod run");
         }
 
-        [UpstreamCall]
-        public static void TestUpstreamCall(string id, string args)
+        public static void CallHandler(string id, string args)
+        {
+            Debug.Log("call SUCCESS!");
+            Gate.CallReturn(id, "result");
+        }
+        public static string SynCallHandler(string args)
+        {
+            Debug.Log("syncall SUCCESS!");
+            return "SUCCESS";
+        }
+    } 
+}
+
+namespace UpstreamClasses
+{
+    public static class UpstreamClasse
+    {
+        public static void UpstreamCallHandler(string id, string args)
         {
             Debug.Log("up stream call SUCCESS!");
             NativeBridge.UpstreamCallReturn(id, "result");
         }
-            
     }
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
+
 }
