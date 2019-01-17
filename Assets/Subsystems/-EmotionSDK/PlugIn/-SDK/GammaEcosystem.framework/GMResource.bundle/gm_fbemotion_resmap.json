@@ -1,0 +1,284 @@
+{
+    "version": "1.0.0",
+    "title": "Emotion Detect Result Map",
+    "data": [{
+        "index": "0",
+        "id":"",
+        "desp_en": "joy",
+        "desp_cn": "欢乐"
+    },{
+        "index": "1",
+        "id":"",
+        "desp_en": "Love",
+        "desp_cn": "爱恋"
+    },{
+        "index": "2",
+        "id":"",
+        "desp_en": "Optimism",
+        "desp_cn": "乐观"
+    },{
+        "index": "3",
+        "id":"",
+        "desp_en": "Admiration",
+        "desp_cn": "钦佩"
+    },{
+        "index": "4",
+        "id":"",
+        "desp_en": "Gratitude",
+        "desp_cn": "感激"
+    },{
+        "index": "5",
+        "id":"",
+        "desp_en": "Desire",
+        "desp_cn": "渴望"
+    },{
+        "index": "6",
+        "id":"",
+        "desp_en": "Sincerity",
+        "desp_cn": "真诚"
+    },{
+        "index": "7",
+        "id":"",
+        "desp_en": "vitality",
+        "desp_cn": "兴奋"
+    },{
+        "index": "8",
+        "id":"",
+        "desp_en": "Trust",
+        "desp_cn": "信任"
+    },{
+        "index": "9",
+        "id":"",
+        "desp_en": "Acceptance",
+        "desp_cn": "接受"
+    },
+    
+    {
+        "index": "10",
+        "id":"",
+        "desp_en": "Harmony",
+        "desp_cn": "和谐"
+    },{
+        "index": "11",
+        "id":"",
+        "desp_en": "Serenity",
+        "desp_cn": "平静"
+    },{
+        "index": "12",
+        "id":"",
+        "desp_en": "Calm",
+        "desp_cn": "冷静"
+    },{
+        "index": "13",
+        "id":"",
+        "desp_en": "Boastfulness",
+        "desp_cn": "自大"
+    },{
+        "index": "14",
+        "id":"",
+        "desp_en": "Pride",
+        "desp_cn": "自豪"
+    },{
+        "index": "15",
+        "id":"",
+        "desp_en": "Angry",
+        "desp_cn": "愤怒"
+    },{
+        "index": "16",
+        "id":"",
+        "desp_en": "Bravery",
+        "desp_cn": "勇敢"
+    },{
+        "index": "17",
+        "id":"",
+        "desp_en": "Defiance",
+        "desp_cn": "违抗"
+    },{
+        "index": "18",
+        "id":"",
+        "desp_en": "Contempt",
+        "desp_cn": "鄙视"
+    },{
+        "index": "19",
+        "id":"",
+        "desp_en": "Deceptiveness",
+        "desp_cn": "虚伪"
+    },
+    
+    {
+        "index": "20",
+        "id":"",
+        "desp_en": "Hate",
+        "desp_cn": "仇恨"
+    },{
+        "index": "21",
+        "id":"",
+        "desp_en": "Aggressiveness",
+        "desp_cn": "好斗"
+    },{
+        "index": "22",
+        "id":"",
+        "desp_en": "Disgust",
+        "desp_cn": "厌恶"
+    },{
+        "index": "23",
+        "id":"",
+        "desp_en": "Insincerity",
+        "desp_cn": "不真诚"
+    },{
+        "index": "24",
+        "id":"",
+        "desp_en": "Annoyance",
+        "desp_cn": "烦恼"
+    },{
+        "index": "25",
+        "id":"",
+        "desp_en": "Envy",
+        "desp_cn": "嫉妒"
+    },{
+        "index": "26",
+        "id":"",
+        "desp_en": "Suspicion",
+        "desp_cn": "怀疑"
+    },{
+        "index": "27",
+        "id":"",
+        "desp_en": "Pessimism",
+        "desp_cn": "悲观"
+    },{
+        "index": "28",
+        "id":"",
+        "desp_en": "Disapproval",
+        "desp_cn": "不赞成"
+    },{
+        "index": "29",
+        "id":"",
+        "desp_en": "Conflict",
+        "desp_cn": "冲突"
+    },
+    
+    {
+        "index": "30",
+        "id":"",
+        "desp_en": "Insult",
+        "desp_cn": "侮辱"
+    },{
+        "index": "31",
+        "id":"",
+        "desp_en": "Sadness",
+        "desp_cn": "悲伤"
+    },{
+        "index": "32",
+        "id":"",
+        "desp_en": "Fatigue",
+        "desp_cn": "疲劳"
+    },{
+        "index": "33",
+        "id":"",
+        "desp_en": "Neglect",
+        "desp_cn": "忽视"
+    },{
+        "index": "34",
+        "id":"",
+        "desp_en": "Tension",
+        "desp_cn": "紧张"
+    },{
+        "index": "35",
+        "id":"",
+        "desp_en": "Passiveness",
+        "desp_cn": "消极"
+    },{
+        "index": "36",
+        "id":"",
+        "desp_en": "Boredom",
+        "desp_cn": "无聊"
+    },{
+        "index": "37",
+        "id":"",
+        "desp_en": "Distraction",
+        "desp_cn": "分心"
+    },{
+        "index": "38",
+        "id":"",
+        "desp_en": "Apprehension",
+        "desp_cn": "忧虑"
+    },{
+        "index": "39",
+        "id":"",
+        "desp_en": "Uneasiness",
+        "desp_cn": "局促不安"
+    },
+    
+    {
+        "index": "40",
+        "id":"",
+        "desp_en": "Remorse",
+        "desp_cn": "悔恨"
+    },{
+        "index": "41",
+        "id":"",
+        "desp_en": "Submission",
+        "desp_cn": "屈服"
+    },{
+        "index": "42",
+        "id":"",
+        "desp_en": "Grievance",
+        "desp_cn": "委屈"
+    },{
+        "index": "43",
+        "desp_en": "Shame",
+        "desp_cn": "羞愧"
+    },{
+        "index": "44",
+        "id":"",
+        "desp_en": "Depression",
+        "desp_cn": "沮丧"
+    },{
+        "index": "45",
+        "id":"",
+        "desp_en": "Fear",
+        "desp_cn": "恐惧"
+    },{
+        "index": "46",
+        "id":"",
+        "desp_en": "Embarrassed",
+        "desp_cn": "尴尬"
+    },{
+        "index": "47",
+        "id":"",
+        "desp_en": "Puzzlement",
+        "desp_cn": "困惑"
+    },{
+        "index": "48",
+        "id":"",
+        "desp_en": "Cowardice",
+        "desp_cn": "胆小怯弱"
+    },{
+        "index": "49",
+        "id":"",
+        "desp_en": "Awe",
+        "desp_cn": "敬畏"
+    },
+    
+    {
+        "index": "50",
+        "id":"",
+        "desp_en": "Surprise",
+        "desp_cn": "惊讶"
+    },{
+        "index": "51",
+        "id":"",
+        "desp_en": "Anticipation",
+        "desp_cn": "期望"
+    },{
+        "index": "52",
+        "id":"",
+        "desp_en": "Interest",
+        "desp_cn": "兴趣"
+    },{
+        "index": "53",
+        "id":"",
+        "desp_en": "Neutra",
+        "desp_cn": "面无表情"
+    }]
+}

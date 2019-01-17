@@ -1,0 +1,6 @@
+framework module GammaEcosystem {
+  umbrella header "GammaEcosystem.h"
+
+  export *
+  module * { export * }
+}

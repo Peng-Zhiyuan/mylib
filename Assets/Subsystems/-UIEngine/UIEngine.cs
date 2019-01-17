@@ -142,16 +142,24 @@ public static class UIEngine
         {
             return;
         }
-        var top = Top;
-        while(typeof(T) != top.GetType())
+        var name = typeof(T).Name;
+        var targetPage = PageStack.Find(name);
+        if(targetPage == null)
         {
-            UIEngine.Back();
-            top = Top;
-            if(top == null)
-            {
-                break;
-            }
+            // page not in stack, can't pop to
+            return;
         }
+        PageStack.PopUtil(targetPage);
+        // var top = Top;
+        // while(typeof(T) != top.GetType())
+        // {
+        //     UIEngine.Back();
+        //     top = Top;
+        //     if(top == null)
+        //     {
+        //         break;
+        //     }
+        // }
     }
 
     public static void Back(object result = null, Admission admision = null)

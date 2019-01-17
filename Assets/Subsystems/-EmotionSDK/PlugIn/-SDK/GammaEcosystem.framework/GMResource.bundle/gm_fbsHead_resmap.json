@@ -1,0 +1,20 @@
+{
+    "version": "1.0.0",
+    "title": "Au Shake Result Map",
+    "data": [{
+        "index": "0",
+        "id":"",
+        "desp_en": "",
+        "desp_cn": "正脸概率"
+    },{
+        "index": "1",
+        "id":"",
+        "desp_en": "",
+        "desp_cn": "左转概率"
+    },{
+        "index": "2",
+        "id":"",
+        "desp_en": "",
+        "desp_cn": "右转概率"
+    }]
+}

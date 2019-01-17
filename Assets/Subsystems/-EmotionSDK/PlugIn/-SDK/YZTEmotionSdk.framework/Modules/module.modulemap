@@ -1,0 +1,6 @@
+framework module YZTEmotionSdk {
+  umbrella header "YZTEmotionSdk.h"
+
+  export *
+  module * { export * }
+}

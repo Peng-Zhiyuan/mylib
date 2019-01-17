@@ -60,7 +60,7 @@ public class Gate {
         Log("-> OnCall " + clazzName + "." + methodName + " " + arg);
         // Type clazz;
         // bridgeClassDic.TryGetValue(clazzName, out clazz);
-        String clazzPath = "BridgeClasses." + clazzName;
+        String clazzPath = clazzName;
         Type clazz = typeof(Gate).Assembly.GetType(clazzPath);
         if (clazz != null)
         {

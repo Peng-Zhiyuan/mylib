@@ -37,11 +37,12 @@ namespace NativeBuilder
 			string[] scenes = ListBuildScenes ();
 			EditorUserBuildSettings.SwitchActiveBuildTarget(build_target);
             EditorUserBuildSettings.androidBuildSystem = AndroidBuildSystem.Gradle;
-			string res = BuildPipeline.BuildPlayer(scenes, target_dir, build_target, build_options);
-			if (res.Length > 0)
-			{
-				throw new Exception("BuildPlayer failure: " + res);
-			}
+			var report = BuildPipeline.BuildPlayer(scenes, target_dir, build_target, build_options);
+			// report.
+			// if (res.steps.Length > 0)
+			// {
+			// 	throw new Exception("BuildPlayer failure: " + res);
+			// }
 		}
 
 		public static string BuildAPK(string projectPath, ProcessHandller process = null)

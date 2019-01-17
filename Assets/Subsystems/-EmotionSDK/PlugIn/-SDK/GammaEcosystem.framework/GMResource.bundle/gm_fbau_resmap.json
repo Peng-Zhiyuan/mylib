@@ -1,0 +1,70 @@
+{
+    "version": "1.0.0",
+    "title": "Au Detect Result Map",
+    "ref": {
+        "FACS": "https://www.cs.cmu.edu/~face/facs.htm",
+        "FACS-gif": "https://imotions.com/blog/facial-action-coding-system/",
+        "FACS-Doc": "https://wenku.baidu.com/view/298d8a8a19e8b8f67c1cb969.html"
+    },
+    "data": [{
+        "index": "0",
+        "id": "AU1",
+        "desp_en": "Inner Brow Raiser",
+        "desp_cn": "眉毛内角抬起"
+    },{
+        "index": "1",
+        "id": "AU2",
+        "desp_en": "Outer Brow Raiser",
+        "desp_cn": "眉毛外角抬起"
+    },{
+        "index": "2",
+        "id": "AU4",
+        "desp_en": "Brow Lowerer",
+        "desp_cn": "皱眉或降低眉毛"
+    },{
+        "index": "3",
+        "id": "AU5",
+        "desp_en": "Upper Lid Raiser",
+        "desp_cn": "上眼睑上升"
+    },{
+        "index": "4",
+        "id": "AU6",
+        "desp_en": "Cheek Raiser",
+        "desp_cn": "脸颊提升"
+    },{
+        "index": "5",
+        "id": "AU9",
+        "desp_en": "Nose Wrinkler",
+        "desp_cn": "皱鼻"
+    },{
+        "index": "6",
+        "id": "AU12",
+        "desp_en": "Lip Corner Puller",
+        "desp_cn": "倾斜向上拉动嘴角"
+    },{
+        "index": "7",
+        "id": "AU17",
+        "desp_en": "Chin Raiser",
+        "desp_cn": "下唇向上"
+    },{
+        "index": "8",
+        "id": "AU20",
+        "desp_en": "Lip stretcher",
+        "desp_cn": "嘴角拉伸"
+    },{
+        "index": "9",
+        "id": "AU25",
+        "desp_en": "Lips part",
+        "desp_cn": "张嘴并指定双唇分离的长度"
+    },{
+        "index": "10",
+        "id": "AU26",
+        "desp_en": "Jaw Drop",
+        "desp_cn": "张嘴并指定颌部下降的距离"
+    },{
+        "index": "11",
+        "id": "AU43",
+        "desp_en": "Eyes Closed",
+        "desp_cn": "闭眼"
+    }]
+}

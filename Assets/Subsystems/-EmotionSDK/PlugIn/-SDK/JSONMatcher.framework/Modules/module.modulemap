@@ -1,0 +1,6 @@
+framework module JSONMatcher {
+  umbrella header "JSONMatcher.h"
+
+  export *
+  module * { export * }
+}
