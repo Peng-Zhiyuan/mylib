@@ -48,18 +48,22 @@ public static class PageStack
         return page;
     }
 
-    public static void PopUtil(Page target)
+    public static List<Page> PopUtil(Page target)
     {
-        if(stack.Count == 0) return;
+        var ret = new List<Page>();
+        if(stack.Count == 0) return ret;
+        if(Peek() == target) return ret;
         var page = stack.Pop();
         page.Active = false;
         page.OnNavigatedFrom();
         page.OnPop();
+        ret.Add(page);
         while(stack.Peek() != target)
         {
             var p = stack.Pop();
             page.Active = false;
             page.OnPop();
+            ret.Add(p);
         }
 
         RecaculateActive();
@@ -69,7 +73,7 @@ public static class PageStack
             top.OnNavigatedTo();
       //      top.ignoreFrameUpdate = true;   //TODO: 做什么的？
         }
-        return;
+        return ret;
     }
 
 	public static Page PopToPool(string name,PagePool pagePool)

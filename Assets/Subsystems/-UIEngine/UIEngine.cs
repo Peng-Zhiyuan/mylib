@@ -120,7 +120,7 @@ public static class UIEngine
         var oldPage = PageStack.Find(pageName);
         if (oldPage != null)
         {
-            throw new Exception("page: " + pageName + " already in stack, can't navigate, try use Backto");
+            throw new Exception("page: " + pageName + " already in stack, can't navigate, try use BackTo");
         }
         var fromPage = PageStack.Peek();
         var page = TakeOrCreatePage(pageName);
@@ -149,7 +149,7 @@ public static class UIEngine
             // page not in stack, can't pop to
             return;
         }
-        PageStack.PopUtil(targetPage);
+        var popedList = PageStack.PopUtil(targetPage);
         // var top = Top;
         // while(typeof(T) != top.GetType())
         // {
@@ -160,6 +160,10 @@ public static class UIEngine
         //         break;
         //     }
         // }
+        foreach(var p in popedList)
+        {
+            pagePool.Put(p.name, p);
+        }
     }
 
     public static void Back(object result = null, Admission admision = null)
