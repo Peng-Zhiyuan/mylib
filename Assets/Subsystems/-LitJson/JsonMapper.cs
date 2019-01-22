@@ -774,6 +774,11 @@ namespace CustomLitJson
 				return;
 			}
 
+			if (obj is float) {
+				writer.Write ((float)obj);
+				return;
+			}
+
 			if (obj is Int32) {
 				writer.Write ((int)obj);
 				return;

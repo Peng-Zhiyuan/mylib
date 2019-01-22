@@ -219,6 +219,14 @@ namespace CustomLitJson
             {
                 return (T)System.Convert.ChangeType(int.Parse(jd.ToString()),typeof(int));
             }
+            else if (typeof(T) == typeof(float))
+            {
+                return (T)System.Convert.ChangeType(float.Parse(jd.ToString()),typeof(float));
+            }
+            else if (typeof(T) == typeof(double))
+            {
+                return (T)System.Convert.ChangeType(double.Parse(jd.ToString()),typeof(double));
+            }
             else if (typeof(T) == typeof(bool))
             {
                 // ios 中使用1表示true，0表示false

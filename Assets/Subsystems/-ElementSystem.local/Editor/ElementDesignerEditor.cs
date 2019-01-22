@@ -22,11 +22,16 @@ namespace ElementSystem
             //base.OnInspectorGUI();
             if (!Application.isPlaying)
             {
-                //EditorGUILayout.Separator();
-                if (GUILayout.Button("GenerateCode"))
+                // 配合 Unity 2018 的嵌套 Prefab 功能，因此不允许嵌套设计器
+                if(elementDesigner.ParentDesigner == null)
                 {
-                    ElementEditorUtils.GenerateCodeForTree(elementDesigner);
+                    //EditorGUILayout.Separator();
+                    if (GUILayout.Button("GenerateCode"))
+                    {
+                        ElementEditorUtils.GenerateCodeForTree(elementDesigner);
+                    }
                 }
+
             }
         }
             

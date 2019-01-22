@@ -18,13 +18,16 @@
 
 @implementation NativePhoto : NSObject
 
-NSString* saveCallId;
+// select photo
+// =======================
+
+NSString* select_saveCallId;
 
 // arg: base64ImageData
 + (void)Select:(NSString*)callId arg:(NSString*)arg
 {
     NSLog(@"[OC] Photo.Select");
-    saveCallId = callId;
+    select_saveCallId = callId;
     
     // 初始化UIImagePickerController类
     UIImagePickerController * picker = [[UIImagePickerController alloc] init];
@@ -41,14 +44,14 @@ NSString* saveCallId;
 {
     if(image == nil)
     {
-        gateCallReturn(saveCallId, @"");
+        gateCallReturn(select_saveCallId, @"");
     }
     else
     {
         NSData* imageData = UIImagePNGRepresentation(image);
         NSString* base64 =  [imageData base64EncodedStringWithOptions: 0];
-        NSLog(@"[OC] Photo data: %@", base64);
-        gateCallReturn(saveCallId, base64);
+        //NSLog(@"[OC] Photo data: %@", base64);
+        gateCallReturn(select_saveCallId, base64);
     }
     
 }
@@ -73,5 +76,57 @@ NSString* saveCallId;
     [NativePhoto complete:nil];
 }
 
-@end
 
+// save image
+// =======================
+
+NSString* save_saveCallId;
+
++ (UIImage*) Base64ToImage:(NSString*) base64String
+{
+    if(base64String == nil)
+    {
+        NSLog(@"[Base64ToImage] base64String is nil");
+        return nil;
+    }
+    NSData *decodedData = [[NSData alloc] initWithBase64EncodedString:base64String options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    if(decodedData == nil)
+    {
+        NSLog(@"[Base64ToImage] data is nil");
+        return nil;
+    }
+    
+    UIImage *image = [UIImage imageWithData:decodedData];
+    if(image == nil)
+    {
+        NSLog(@"[Base64ToImage] image is nil");
+        return nil;
+    }
+    return image;
+}
+
++ (void) imageSaved: (UIImage*) image didFinishSavingWithError:(NSError*)error contextInfo:(void*) contextInfo
+{
+    if (error != nil)
+    {
+        NSLog(@"[imageSaved] error");
+        gateCallReturn(save_saveCallId, @"false");
+    }
+    else
+    {
+        gateCallReturn(save_saveCallId, @"true");
+    }
+}
+
+
++ (void)Save:(NSString*)callId arg:(NSString*)base64
+{
+    save_saveCallId = callId;
+    UIImage *img = [NativePhoto Base64ToImage:base64];
+    UIImageWriteToSavedPhotosAlbum(img,  [NativePhoto class],
+                                   @selector(imageSaved:didFinishSavingWithError:contextInfo:), nil);
+}
+
+
+@end
